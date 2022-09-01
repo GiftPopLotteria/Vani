@@ -1,0 +1,57 @@
+#pricing-3 {
+    background-image: url('/assets/img/city-profile-new.webp')
+}
+
+.img-login-gradient-main {
+    background-image: url('/assets/img/bg7.webp');
+    background-size: cover;
+    background-position: top center;
+}
+
+.canva-login {
+    padding-top: 150px;
+}
+
+.card-title.login-title {
+    font-size: 24px;
+    padding: 26px;
+}
+
+@media (max-width: 767px) {
+    #header-image {
+        background-image: none;
+        ;
+        background: rgb(2, 0, 36);
+        background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(138, 6, 99, 1) 35%, rgba(115, 0, 255, 1) 100%);
+    }
+
+    #pricing-3,
+    .img-login-gradient-main {
+        background-image: none;
+        background: rgb(2, 0, 36);
+        background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(168, 0, 119, 1) 28%, rgba(5, 20, 173, 1) 50%, rgba(170, 8, 136, 1) 75%, rgba(18, 3, 37, 1) 100%);
+    }
+}
+
+@media (max-width: 500px) {
+    .canva-login {
+        padding-top: 0px;
+    }
+}
+
+.section-gray.section-dark-text .description {
+    color: #555;
+}
+
+.section-gray.section-dark-text .card-description {
+    color: #555;
+}
+
+.section-gray.section-dark-text p {
+    color: #555;
+}
+
+
+.font-17 {
+    font-size: 17px;
+}

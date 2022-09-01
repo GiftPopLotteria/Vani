@@ -1,0 +1,25 @@
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(sendUserGeo);
+    }
+}
+
+function sendUserGeo(position) {
+    const url = document.URL;
+    if (url.includes('?')) {
+        window.location.href = url + '&lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + "&geoPermission=true";
+    } else {
+        window.location.href = url + '?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + "&geoPermission=true";
+    }
+
+}
+
+function declineGeo() {
+    if (document.URL.includes('?')) {
+        window.location.href = document.URL + '&geoPermission=false';
+    } else {
+        window.location.href = document.URL + '?geoPermission=false';
+    }
+}
+
+

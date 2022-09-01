@@ -1,0 +1,14 @@
+$('#goBtn').click(function () {
+    gtag('event', 'redirect_by_click', {
+        'event_category': 'redirect',
+        'event_label': 'User redirect by click on btn',
+        'value': 1
+    });
+})
+
+/** STARTS GOOGLE */
+gtag('event', 'qr_view', {
+    'event_category': 'qr_view',
+    'event_label': 'View QR Code',
+    'value': 1
+});

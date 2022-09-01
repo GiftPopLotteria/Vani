@@ -1,0 +1,1333 @@
+
+/*font*/
+
+
+.font-Arial-64 {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 64px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.font-Arial-48-bold {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 45px;
+    color: #FFFFFF;
+    line-height: 140%;
+    text-transform: uppercase;
+    /* max-width: 400px; */
+    padding: 0;
+    width: 100%;
+    margin: 27% 0%;
+}
+
+.font-Arial-48-bold1 {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 45px;
+    color: #FFFFFF;
+    line-height: 140%;
+    text-transform: uppercase;
+    /* max-width: 400px; */
+    padding: 0;
+    width: 100%;
+    margin: 27% 0%;
+}
+
+.font-Montserrat-30-bold {
+    font-family: Montserrat, sans-serif;
+    padding-bottom: 17px;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    text-align: center;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+
+.font-Arial-36 {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: #000000;
+}
+
+.font-Arial-36-carousel {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: #FFFFFF;
+    margin: 0 141px 10px;
+}
+
+.font-Arial-36-white {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    padding: 50px 0;
+}
+
+.font-Arial-30-bold {
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    text-align: center;
+
+}
+
+.font-Arial-25-bold {
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    max-width: 345px;
+}
+
+.font-Arial-24-bold {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.font-Arial-20-bold {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.font-Arial-16-bold-uppercase {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.font-Arial-15-bold {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    color: #666C7D;
+    padding-left: 25px;
+    padding-right: 10px;
+    margin: 0
+}
+
+.font-Arial-15-bold-places {
+    font-family: Arial, sans-serif;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    color: #666C7D;
+    padding: 0 10px;
+    background: #F8F8F8;
+    border: 1px solid #EEEEEE;
+    border-radius: 0 0 12px 12px;
+    margin: 0 auto;
+    max-width: 258px;
+    width: 100%;
+}
+
+.font-Arial-15-normal {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    color: #000000;
+}
+
+.font-Arial-15-normal-white {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    color: #FFFFFF;
+    opacity: 0.8;
+    text-align: center;
+}
+
+.font-Arial-15-normal-button {
+    padding-bottom: 70px;
+}
+
+.font-Arial-15-normal-button a{
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    color: #FFFFFF;
+    padding: 20px 115px;
+    background: #16B054;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.font-Arial-15-small {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    padding: 10px 0;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.font-Arial-14-normal {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.font-Arial-14-small {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    color: #c4c4c4;
+}
+
+.font-Arial-13-bold {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.font-Arial-13-bold a {
+    padding: 7px 13px;
+    background: #16B054;
+    border-radius: 4px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.font-Arial-13-small {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    opacity: 0.8;
+    color: #FFFFFF;
+}
+
+/*font*/
+
+
+
+.ticket {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+}
+
+.ticket .dataTable {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 100%;
+    color: #000000;
+    margin: 20px 20px 12px;
+}
+
+.ticket .card-title {
+    text-align: left;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    /*height: 120px;*/
+    max-height: 120px;
+    font-size: 24px;
+    line-height: 138%;
+    text-transform: uppercase;
+    color: #000000;
+    margin: 0 20px 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ticket .ticketPlace {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 100%;
+    color: #000000;
+    margin: 0 20px 12px;
+    display: block;
+
+}
+
+.ticket .ticketPrice {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 138%;
+    text-align: center;
+    color: #C4C4C4;
+}
+
+#price {
+    margin: 0 20px 12px;
+    line-height: 28px;
+    font-size: 20px;
+    font-family: Arial;
+    font-weight: 700;
+    color: #000000;
+}
+
+.card.ticket .card-footer {
+    height: 75px;
+    text-align: center;
+    margin: auto;
+}
+
+.card.ticket .ticketDivider {
+    border-top: 1px dashed #DDDDDD;
+    margin: 0 35px;
+}
+
+.card.ticket .moreInfo {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    text-transform: uppercase;
+    text-align: center;
+    color: #16B054;
+}
+
+.collapsed.types {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.collapsed.categories {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.collapsed.places {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.collapsed.performers {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.collapsed.countries {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.collapsed.cities {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+#headingTwo.card-header.types {
+    border-bottom: 1px dashed #DDDDDD;
+}
+
+#headingFive.card-header.places {
+    border-bottom: 1px dashed #DDDDDD;
+}
+
+#headingSix.card-header.performers {
+    border-bottom: 1px dashed #DDDDDD;
+}
+
+#headingSeven.card-header.categories {
+    border-bottom: 1px dashed #DDDDDD;
+}
+
+#headingThree.card-header.countries {
+    border-bottom: 1px dashed #DDDDDD;
+}
+
+#headingFour.card-header.cities {
+    border-bottom: 1px dashed #DDDDDD;
+}
+
+#headingOne.card-header.priceRange {
+    border-bottom: #DDDDDD;
+}
+
+.section-title.title {
+    font-family: Arial;
+    font-style: normal;
+    text-align: center;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 100%;
+    color: #3E4957;
+}
+
+.types {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.places {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.performers {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.countries {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.categories {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.cities {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: #3E4957;
+}
+
+.card-body.places {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    width: 250px;
+    display: block;
+    text-align: revert;
+    line-height: 100%;
+    color: #3E4957;
+    text-transform: none;
+}
+
+.card-body.performers {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 100%;
+    color: #3E4957;
+    text-transform: none;
+}
+
+.card-body.categories {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 100%;
+    color: #3E4957;
+    text-transform: none;
+}
+
+.card-body.types {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 100%;
+    color: #3E4957;
+    text-transform: none;
+}
+
+.card-collapse .card-header a:active, .card-collapse .card-header a:hover, .card-collapse .card-header a[aria-expanded=true] {
+    color: #16B054;
+}
+
+#sliderRefine {
+    height: 6px;
+    border-radius: unset;
+}
+
+#sliderRefine .noUi-base {
+    height: 6px;
+}
+
+.refinePrice {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+html:not([dir=rtl]) .noUi-horizontal .noUi-origin {
+    top: 3px;
+}
+
+.linkColour:focus {
+    color: #16B054;
+}
+
+#scrollTypes {
+    position: relative;
+    height: 200px;
+}
+
+#scrollCountries {
+    position: relative;
+    height: 200px;
+}
+
+#scrollCities {
+    position: relative;
+    height: 200px;
+}
+
+#scrollPlaces {
+    position: relative;
+    height: 200px;
+}
+
+#scrollPerformers {
+    position: relative;
+    height: 200px;
+}
+
+#scrollCategories {
+    position: relative;
+    height: 200px;
+}
+
+
+/*
+ * Container style
+ */
+.ps {
+    overflow: hidden !important;
+    overflow-anchor: none;
+    -ms-overflow-style: none;
+    touch-action: auto;
+    -ms-touch-action: auto;
+}
+
+/*
+ * Scrollbar rail styles
+ */
+.ps__rail-x {
+    display: none;
+    opacity: 0;
+    transition: background-color .2s linear, opacity .2s linear;
+    -webkit-transition: background-color .2s linear, opacity .2s linear;
+    height: 15px;
+    /* there must be 'bottom' or 'top' for ps__rail-x */
+    bottom: 0px;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps__rail-y {
+    display: none;
+    opacity: 0;
+    transition: background-color .2s linear, opacity .2s linear;
+    -webkit-transition: background-color .2s linear, opacity .2s linear;
+    width: 15px;
+    /* there must be 'right' or 'left' for ps__rail-y */
+    right: 0;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps--active-x > .ps__rail-x,
+.ps--active-y > .ps__rail-y {
+    display: block;
+    background-color: transparent;
+}
+
+.ps:hover > .ps__rail-x,
+.ps:hover > .ps__rail-y,
+.ps--focus > .ps__rail-x,
+.ps--focus > .ps__rail-y,
+.ps--scrolling-x > .ps__rail-x,
+.ps--scrolling-y > .ps__rail-y {
+    opacity: 0.6;
+}
+
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+    background-color: #eee;
+    opacity: 0.9;
+}
+
+/*
+ * Scrollbar thumb styles
+ */
+.ps__thumb-x {
+    background-color: #aaa;
+    border-radius: 6px;
+    transition: background-color .2s linear, height .2s ease-in-out;
+    -webkit-transition: background-color .2s linear, height .2s ease-in-out;
+    height: 6px;
+    /* there must be 'bottom' for ps__thumb-x */
+    bottom: 2px;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps__thumb-y {
+    background-color: #aaa;
+    border-radius: 6px;
+    transition: background-color .2s linear, width .2s ease-in-out;
+    -webkit-transition: background-color .2s linear, width .2s ease-in-out;
+    width: 6px;
+    /* there must be 'right' for ps__thumb-y */
+    right: 2px;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps__rail-x:hover > .ps__thumb-x,
+.ps__rail-x:focus > .ps__thumb-x,
+.ps__rail-x.ps--clicking .ps__thumb-x {
+    background-color: #999;
+    height: 11px;
+}
+
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y,
+.ps__rail-y.ps--clicking .ps__thumb-y {
+    background-color: #999;
+    width: 11px;
+}
+
+/* MS supports */
+@supports (-ms-overflow-style: none) {
+    .ps {
+        overflow: auto !important;
+    }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .ps {
+        overflow: auto !important;
+    }
+}
+
+@media (max-width: 1650px) {
+
+    .font-Arial-64 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 64px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+    }
+
+    .font-Arial-48-bold {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 42px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 20% 0%;
+    }
+
+    .font-Arial-48-bold1 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 33px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 21% 0%;
+    }
+
+
+    .font-Arial-36 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #000000;
+    }
+
+    .font-Arial-36-carousel {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #FFFFFF;
+        margin: 4% ;
+    }
+
+    .font-Arial-36-white {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        padding: 50px 0;
+    }
+
+    .font-Arial-25-bold {
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        max-width: 345px;
+    }
+
+    .font-Arial-24-bold {
+        font-family: Arial, sans-serif;
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+}
+
+
+@media (max-width: 1400px) {
+
+    .font-Arial-64 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 64px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+    }
+
+    .font-Arial-48-bold {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 33px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 20% 0%;
+    }
+
+    .font-Arial-48-bold1 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 33px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 21% 0%;
+    }
+
+
+    .font-Arial-36 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #000000;
+    }
+
+    .font-Arial-36-carousel {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #FFFFFF;
+        margin: 4% ;
+    }
+
+    .font-Arial-36-white {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        padding: 50px 0;
+    }
+
+    .font-Arial-25-bold {
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        max-width: 345px;
+    }
+
+    .font-Arial-24-bold {
+        font-family: Arial, sans-serif;
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+}
+
+
+
+@media (max-width: 1200px) {
+
+    .font-Arial-64 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 64px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+    }
+    .font-Arial-48-bold {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 27px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 17% 0%;
+    }
+
+    .font-Arial-48-bold1 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 27px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 17% 0%;
+    }
+
+
+
+    .font-Arial-36-carousel {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 25px;
+        color: #FFFFFF;
+        margin: 4% ;
+    }
+
+    .font-Arial-36 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #000000;
+        padding-left: 20px;
+    }
+
+
+    .font-Arial-25-bold {
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        max-width: 345px;
+    }
+
+    .font-Arial-24-bold {
+        font-family: Arial, sans-serif;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+}
+
+
+
+@media (max-width: 1100px) {
+
+    .font-Arial-64 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 64px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+    }
+    .font-Arial-48-bold {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 23px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 15% 0%;
+    }
+
+    .font-Arial-48-bold1 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 23px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 15% 0%;
+    }
+
+
+
+    .font-Arial-36-carousel {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 25px;
+        color: #FFFFFF;
+        margin: 4% ;
+    }
+
+
+    .font-Arial-25-bold {
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        max-width: 345px;
+    }
+
+    .font-Arial-24-bold {
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .font-Arial-64 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 64px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+    }
+    .font-Arial-48-bold {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 21px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 17% 0%;
+    }
+
+    .font-Arial-48-bold1 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 21px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 17% 0%;
+    }
+
+
+
+    .font-Arial-36-carousel {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #FFFFFF;
+        margin: 4% ;
+    }
+
+
+    .font-Arial-25-bold {
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        max-width: 345px;
+    }
+
+    .font-Arial-24-bold {
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .font-Arial-64 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 64px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+    }
+
+    .font-Arial-48-bold {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 21px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 15% 0%;
+    }
+
+    .font-Arial-48-bold1 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 21px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 15% 0%;
+    }
+
+
+    .font-Arial-36 {
+        font-size: 25px;
+    }
+
+
+    .font-Arial-36-carousel {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #FFFFFF;
+        margin: 4% ;
+    }
+
+
+    .font-Arial-25-bold {
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        max-width: 345px;
+    }
+
+    .font-Arial-24-bold {
+        font-family: Arial, sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .font-Montserrat-30-bold {
+        font-size: 24px;
+        padding: 0;
+    }
+
+    .font-Arial-64 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 64px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+    }
+
+    .font-Arial-48-bold {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 19px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 12% 0%;
+    }
+
+    .font-Arial-48-bold1 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 17px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 12% 0%;
+    }
+
+
+
+    .font-Arial-36-carousel {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #FFFFFF;
+        margin: 4% ;
+    }
+
+    .font-Arial-36 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        color: #000000;
+        padding-left: 0;
+    }
+
+
+    .font-Arial-25-bold {
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        max-width: 345px;
+    }
+
+    .font-Arial-24-bold {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .font-Arial-64 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 64px;
+        color: #FFFFFF;
+        text-transform: uppercase;
+    }
+
+    .font-Arial-48-bold {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 19px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 12% 0%;
+    }
+
+    .font-Arial-48-bold1 {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 17px;
+        color: #FFFFFF;
+        line-height: 140%;
+        text-transform: uppercase;
+        /* max-width: 400px; */
+        padding: 0px;
+        width: 100%;
+        margin: 12% 0%;
+    }
+
+
+
+    .font-Arial-36-carousel {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+        color: #FFFFFF;
+        margin: 4% ;
+    }
+
+
+    .font-Arial-25-bold {
+        font-family: Arial, sans-serif;
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        max-width: 345px;
+    }
+
+    .font-Arial-24-bold {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+}
+
+

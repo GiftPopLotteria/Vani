@@ -1,0 +1,438 @@
+/*.bg-img{*/
+/*    background-image: url('/static/pages/blog-img/office-new.webp');*/
+/*}*/
+
+/*.close-main-1{*/
+/*    height: 1150px;*/
+/*    overflow: hidden;*/
+/*}*/
+
+/*.open-main-1{*/
+/*    height: 1750px;*/
+/*}*/
+
+
+/*@media (max-width: 991px) {*/
+/*    .img-size-sm {*/
+/*        width: 100%;*/
+/*        height: 800px;*/
+/*    }*/
+/*    .text-1-sm{*/
+/*        font-size: 40px;*/
+/*    }*/
+/*    .text-4-sm{*/
+/*        font-size: 15px;*/
+/*    }*/
+/*    .icons-size{*/
+/*        width: 60px;*/
+/*        height: 60px;*/
+/*    }*/
+
+/*}*/
+/*@media (max-width: 640px) {*/
+/*    .img-size-sm {*/
+/*        width: 100%;*/
+/*        height: 500px;*/
+/*    }*/
+/*    .text-1-sm{*/
+/*        font-size: 30px;*/
+/*    }*/
+/*    .text-4-sm{*/
+/*        font-size: 12px;*/
+/*    }*/
+/*    .icons-size{*/
+/*        width: 40px;*/
+/*        height: 40px;*/
+/*    }*/
+
+/*}*/
+/*@media (max-width: 320px) {*/
+/*    .img-size-sm {*/
+/*        width: 100%;*/
+/*        height: 300px;*/
+/*        margin-top: 70px;*/
+/*    }*/
+/*    .text-1-sm{*/
+/*        font-size: 20px;*/
+/*        padding-top: 20px;*/
+/*    }*/
+/*    .text-4-sm{*/
+/*        font-size: 10px;*/
+/*    }*/
+/*    .icons-size{*/
+/*        width: 40px;*/
+/*        height: 40px;*/
+/*    }*/
+
+/*}*/
+
+
+
+
+/*[data-tooltip] {*/
+/*    position: relative; !* Относительное позиционирование *!*/
+/*}*/
+/*[data-tooltip]::after {*/
+
+/*    content: attr(data-tooltip); !* Выводим текст *!*/
+/*    position: absolute; !* Абсолютное позиционирование *!*/
+/*    width: 280px; !* Ширина подсказки *!*/
+/*    left: -180px; top: 0; !* Положение подсказки *!*/
+/*    background: #FFFFFF;*/
+/*    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);  !* Параметры тени *!*/
+/*    border-radius: 5px; !* Синий цвет фона *!*/
+/*    font-family: Roboto, sans-serif;*/
+/*    font-style: normal;*/
+/*    font-weight: normal;*/
+/*    font-size: 13px;*/
+/*    line-height: 18px;*/
+/*    color: #3C4858; !* Цвет текста *!*/
+/*    padding: 0.5em; !* Поля вокруг текста *!*/
+/*    pointer-events: none; !* Подсказка *!*/
+/*    opacity: 0; !* Подсказка невидима *!*/
+/*    transition: 1s; !* Время появления подсказки *!*/
+/*}*/
+/*[data-tooltip]:hover::after {*/
+/*    opacity: 1; !* Показываем подсказку *!*/
+/*    top: 2em; !* Положение подсказки *!*/
+/*}*/
+
+.main-card-custom{
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: .25rem;
+}
+
+
+
+/*block in home page (YouTube)*/
+
+
+
+
+#remove-img {
+
+    height: 250px;
+    width:100%
+}
+
+.col-7 {
+    flex: 1 0 58%;
+    max-width: 100%;
+}
+
+.col-product {
+    display: flex;
+    padding: 13px;
+    margin-bottom: 20px;
+    background: #FFFFFF;
+    border: 1px solid #F0F0F0;
+    box-sizing: border-box;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04), 0 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 6px;
+    text-align: left;
+}
+
+
+.custom-main-raised-margin{
+    margin: -60px 30px 0;
+    border-radius: 6px;
+    box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+}
+
+.photo-product {
+    max-height: 150px;
+    margin: auto;
+}
+
+.footer-container {
+    background: #000000;
+}
+
+.products-block {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.products-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.products-container a {
+    margin: 0 10px;
+}
+
+.privacy-footer {
+    background: #FFFFFF;
+    padding: 5px;
+}
+
+.footer-privacy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-privacy div {
+    display: flex;
+    color: #AEAEAE;
+    font-size: 12px;
+    align-items: center;
+}
+
+.footer-privacy div img {
+    margin-right: 5px;
+}
+.margin-140 {
+    margin-left: -140px;
+}
+
+@media (max-width: 979px) {
+    .margin-140 {
+        margin-left: -100px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .margin-140 {
+        margin-left: 0;
+    }
+    .con-footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .padding-40 {
+        padding-bottom: 40px;
+    }
+
+    .col-product {
+        width: 300px;
+        margin: 0 auto 15px 0;
+    }
+
+    .custom-main-raised-margin {
+        margin: -60px 0 0;
+        border-radius: 6px;
+        box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+    }
+
+    .footer-privacy div {
+        font-size: 8px;
+    }
+
+    @media screen and (max-width: 405px) {
+
+        div.footer-container {
+            margin: 30px 0 0;
+        }
+
+        .footer-privacy {
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .footer-privacy div {
+            margin: 0 5px;
+        }
+        #remove-img {
+            background: url("/static/pages/block-you-tube-img/frame-mini.png");
+            background-size: cover;
+
+        }
+
+        .off-img-main-bg {
+            background-image: none;
+        }
+
+        #youtube-img-mini {
+            max-width: 50px;
+            height: 50px;
+        }
+
+        .main-font-Montserrat {
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 37px;
+            text-align: center;
+
+            color: #FFFFFF;
+        }
+    }
+
+
+
+
+    @media screen and (max-width: 767px) {
+        #remove-img {
+            background: url("/static/pages/block-you-tube-img/frame-mini.png");
+            height: 210px;
+            width: 206px;
+        }
+
+        .off-img-main-bg {
+            background-image: none;
+        }
+
+        #youtube-img-mini {
+            max-width: 50px;
+        }
+
+        .main-height-block {
+            min-height: 70px;
+        }
+
+        .main-font-Montserrat {
+            font-family: Montserrat, sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 37px;
+            text-align: center;
+
+            color: #FFFFFF;
+        }
+    }
+
+
+    .custom-main-raised-margin {
+        margin: -60px 30px 0;
+        border-radius: 6px;
+        box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+    }
+
+
+    @media screen and (max-width: 770px) {
+        .custom-main-raised-margin {
+            margin: -60px 0 0;
+            border-radius: 6px;
+            box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+        }
+
+
+    }
+
+    @media screen and (min-width: 768px) {
+        #remove-img {
+            background-size: 100% 100%;
+            width: 180px;
+            height: 150px;
+            background-repeat: no-repeat;
+            background-image: url("/static/pages/block-you-tube-img/man-gr.png");
+        }
+
+        #youtube-img-mini {
+            max-width: 100px;
+            height: 90px;
+        }
+
+        .off-img-main-bg {
+            background-image: url('/static/pages/block-you-tube-img/Frame-bg.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .main-height-block {
+            min-height: 200px;
+        }
+    }
+    @media (min-width: 992px) {
+        #remove-img {
+            width: 180px;
+            height: 150px;
+            background-repeat: no-repeat;
+            background-image: url("/static/pages/block-you-tube-img/man-gr.png");
+        }
+
+        #youtube-img-mini {
+            max-width: 100px;
+            height: 90px;
+        }
+
+        .off-img-main-bg {
+            background-image: url('/static/pages/block-you-tube-img/Frame-bg.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .main-height-block {
+            min-height: 200px;
+        }
+    }
+    @media (min-width: 1200px) {
+        #remove-img {
+            width: 180px;
+            height: 150px;
+            background-repeat: no-repeat;
+            background-image: url("/static/pages/block-you-tube-img/man-gr.png");
+        }
+
+        #youtube-img-mini {
+            max-width: 100px;
+            height: 90px;
+        }
+
+        .off-img-main-bg {
+            background-image: url('/static/pages/block-you-tube-img/Frame-bg.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .main-height-block {
+            min-height: 200px;
+        }
+    }
+}
+
+
+
+/*end page (YouTube)*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

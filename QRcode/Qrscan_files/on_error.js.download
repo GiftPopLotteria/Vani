@@ -1,0 +1,12 @@
+window.addEventListener('error', (event) => {
+    let httpRequest;
+    if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+        httpRequest = new XMLHttpRequest();
+    } else if (window.ActiveXObject) { // IE
+        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (!event.message.indexOf('zaloJSV2')) {
+        httpRequest.open('GET', `/error/notification?message=${event.message}&link=${location}&type=${event.type}&file=${event.filename}&colline=${event.colno} ${event.lineno}`, true);
+        httpRequest.send(null);
+    }
+});

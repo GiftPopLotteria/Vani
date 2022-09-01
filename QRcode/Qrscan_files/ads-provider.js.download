@@ -1,0 +1,92 @@
+//Subscription
+function addSubscription() {
+    $.ajax({
+        type: "POST",
+        url: 'https://me-ads.org/api/ads/get',
+        data: {'device': navigator.userAgent, 'type': 'subscription'},
+        success: function (data) {
+            $('body').append(data.code);
+        },
+        error: function () {
+        }
+    });
+}
+
+function addFooterBanner()
+{
+    $.ajax({
+        type: "POST",
+        url: 'https://me-ads.org/api/ads/get',
+        data: {'device': navigator.userAgent, 'type': 'footer'},
+        success: function (data) {
+            $('body').append(data.code);
+        },
+        error: function () {
+        }
+    });
+}
+function addPushBanner()
+{
+    $.ajax({
+        type: "POST",
+        url: 'https://me-ads.org/api/ads/get',
+        data: {'device': navigator.userAgent, 'type': 'push'},
+        success: function (data) {
+            $('body').append(data.code);
+        },
+        error: function () {
+        }
+    });
+}
+function addPromoBlock()
+{
+    $.ajax({
+        type: "POST",
+        url: 'https://me-ads.org/api/ads/get',
+        data: {'device': navigator.userAgent, 'type': 'promo'},
+        success: function (data) {
+            $('#promoContainer').append(data.code);
+        },
+        error: function () {
+        }
+    });
+}
+
+function addDirectLink() {
+    $('.directLink').on('click', function () {
+            $.ajax({
+                type: "POST",
+                url: 'https://me-ads.org/api/ads/get',
+                data: {'device': navigator.userAgent, 'type': 'directLink'},
+                success: function (data) {
+                    if (data && data.length !== 0) {
+                        setTimeout(function() {
+                            window.location.href = data.code;
+                        }, 2000);
+                    }
+                },
+                error: function () {
+                }
+            });
+    });
+}
+
+function addAdmitadLink() {
+    $('.admitadLink').each(function () {
+        let object = $(this);
+        let link = object.attr('href');
+        $.ajax({
+            type: "GET",
+            url: 'https://me-ads.org/api/ads/admitad-link?link=' + link,
+            success: function (data) {
+                if (data.url) {
+                    object.attr('href', data.url);
+                }
+            },
+            error: function () {
+            }
+        });
+    });
+}
+
+//navigator.userAgent

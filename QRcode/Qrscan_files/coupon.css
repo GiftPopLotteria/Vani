@@ -1,0 +1,139 @@
+.col-4 {
+    max-width: none;
+    flex: 0 0 30.333333%;
+}
+#coupon-show {
+    height: 360px;
+}
+.coupon {
+    width: 345px;
+    height: 100px;
+    margin: 15px;
+    background: #FFFFFF;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    font-family: "SF Pro Text", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 22px;
+    letter-spacing: -0.08px;
+}
+.coupon-head {
+    height: 50px;
+}
+.coupon-title {
+    float: left;
+    padding-top: 14px;
+}
+.coupon-title-text {
+    text-align: left;
+    width: 240px;
+    height: 22px;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #000000;
+}
+.coupon-expired {
+    float: left;
+    margin: -16px 0 0 0;
+    font-size: 10px;
+    font-weight: normal;
+    color: #AEAEB2;
+}
+.coupon-title-button {
+    float: right;
+    margin-top: 8px;
+}
+.coupon-title-button button {
+    width: 85px;
+    height: 32px;
+    padding: 0;
+}
+.coupon-button-text {
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+.coupon-line {
+    width: 310px;
+    margin: 7px 0 7px 0;
+    border: 1px dashed #E5E5EA;
+}
+.coupon-body {
+    margin-top: -4px;
+    height: 34px;
+}
+.coupon-logo {
+    float: left;
+}
+.coupon-code-title {
+    font-size: 9px;
+    font-weight: 500;
+    color: #969696;
+}
+.coupon-code-question {
+    padding: 3px 0 0 5px;
+    vertical-align: middle;
+    color: #9C27B0;
+}
+.coupon-code-button {
+    margin: 0 0 0 4px;
+    padding: 4px 6px 1px;
+    background: #F1F1F1;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #000000;
+}
+.coupon-link {
+    height: 22px;
+    font-size: 10px;
+    font-weight: normal;
+    color: #AEAEB2;
+}
+@media (min-width: 1214px) {
+    #coupon-show {
+        height: 250px;
+    }
+}
+@media (max-width: 1214px) {
+    #coupon-show {
+        height: 400px;
+    }
+}
+@media (max-width: 991px) {
+    #coupon-show {
+        height: 767px;
+    }
+    .pad-img-main{
+        margin-bottom: 30px;
+    }
+    .margin-btn-main{
+        margin-bottom: 51px;
+    }
+    .coupon {
+        width: 335px;
+    }
+    .coupon-line {
+        width: 303px;
+    }
+}
+@media (max-width: 767px) {
+    #coupon-show {
+        height: 780px;
+    }
+    .coupon {
+        width: 370px;
+    }
+    .coupon-line {
+        width: 338px;
+    }
+}
+@media (max-width: 480px) {
+    .coupon {
+        width: 335px;
+    }
+    .coupon-line {
+        width: 262px;
+    }
+}

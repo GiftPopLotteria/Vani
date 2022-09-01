@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)https://me-recommend.com/iframe -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="some test">
+    <title>Document</title>
+        <script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script></head>
+<body class="vsc-initialized">
+    <script>
+        let userHistoryId = null;
+
+        /**
+         * @return {string|null}
+         */
+        function getUserHistoryId(msg) {
+            if (msg.data.userHistoryId) {
+                return msg.data.userHistoryId;
+            } else if (null !== userHistoryId) {
+                return userHistoryId;
+            } else {
+                try {
+                    let userHistoryId = localStorage.getItem('userHistoryId');
+
+                    return null !== userHistoryId ? userHistoryId : null;
+                } catch (e) {
+                    return null;
+                }
+            }
+        }
+
+        function onMsg(msg) {
+            if (undefined !== msg.data.f) {
+                if (msg.data.f === 'ga') getAll(msg);
+                if (msg.data.f === 'gc') getCategory(msg);
+                if (msg.data.f === 'gr') getRecommend(msg);
+            }
+            if (undefined !== msg.data.iframeAction) {
+                let data = new FormData();
+
+                try {
+                    let userStorage = localStorage.getItem('MAJDI');
+                    let lastHistory = localStorage.getItem('LICAT');
+                    let xid = localStorage.getItem('xid');
+
+                    if (null !== userStorage) {
+                        data.append('storage', userStorage);
+                    }
+                    if (null !== lastHistory) {
+                        data.append('li_cat', lastHistory);
+                    }
+                    if (null !== xid) {
+                        data.append('xid', xid);
+                    }
+                } catch (e) {
+                    return;
+                }
+
+                let action = msg.data.iframeAction;
+
+                if (action === 'email') {
+                    data.append('email', msg.data.email);
+                    data.append('userHistoryId', getUserHistoryId(msg));
+
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'https://me-recommend.com/save-email');
+                    xhr.onreadystatechange = processXHR(xhr, action);
+                    xhr.send(data);
+                } else if (action === 'store') {
+                    if (null !== msg.data.title) {
+                        data.append('title', msg.data.title);
+                    }
+                    if (null !== msg.data.description) {
+                        data.append('description', msg.data.description);
+                    }
+                    data.append('url', msg.data.url);
+
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'https://me-recommend.com/save-meta');
+                    xhr.onreadystatechange = processXHR(xhr, action);
+                    xhr.send(data);
+                } else if (
+                    action === 'action'
+                    && msg.data.clientId > 0
+                    && msg.data.projectId > 0
+                ) {
+                    if (null !== msg.data.title) {
+                        data.append('title', msg.data.title);
+                    }
+                    if (null !== msg.data.description) {
+                        data.append('description', msg.data.description);
+                    }
+                    data.append('action', msg.data.action);
+                    data.append('clientId', msg.data.clientId);
+                    data.append('projectId', msg.data.projectId);
+                    data.append('url', msg.data.url);
+                    data.append('debugUrl', msg.data.debugUrl);
+                    data.append('userHistoryId', getUserHistoryId(msg));
+
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'https://me-recommend.com/add-action');
+                    xhr.onreadystatechange = processXHR(xhr, action);
+                    xhr.send(data);
+                }
+            }
+        }
+
+        function getAll(msg) {
+            let data = new FormData();
+
+            try {
+                let xid = localStorage.getItem('xid');
+                let lastHistory = localStorage.getItem('LICAT');
+
+                if (null !== lastHistory) {
+                    data.append('li_cat', lastHistory);
+                }
+                if (null !== xid) {
+                    data.append('xid', xid);
+                }
+                if (msg.data.e) data.append('email', msg.data.e);
+                if (msg.data.t) data.append('title', msg.data.t);
+                if (msg.data.d) data.append('description', msg.data.d);
+
+                data.append('url', msg.data.u);
+                data.append('projectId', msg.data.p);
+
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://me-recommend.com/get-all');
+                xhr.onload = () => {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        let parseData = JSON.parse(xhr.responseText);
+                        msg.ports[0].postMessage({
+                            c: parseData['c'],
+                            r: parseData['r'],
+                        });
+                    } else {
+                        msg.ports[0].postMessage({c: [], r: []});
+                    }
+                };
+                xhr.send(data);
+            } catch (e) {
+                msg.ports[0].postMessage({c: [], r: []});
+            }
+        }
+
+        function getCategory(msg) {
+            let data = new FormData();
+
+            try {
+                let lastHistory = localStorage.getItem('LICAT');
+
+                if (null !== lastHistory) {
+                    data.append('li_cat', lastHistory);
+
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'https://me-recommend.com/get-category');
+                    xhr.onload = () => {
+                        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                            msg.ports[0].postMessage({c: JSON.parse(xhr.responseText)});
+                        } else {
+                            msg.ports[0].postMessage({c: []});
+                        }
+                    };
+                    xhr.send(data);
+                } else {
+                    msg.ports[0].postMessage({c: []});
+                }
+            } catch (e) {
+                msg.ports[0].postMessage({c: []});
+            }
+        }
+
+        function getRecommend(msg) {
+            let data = new FormData();
+
+            try {
+                let xid = localStorage.getItem('xid');
+
+                if (null !== xid) {
+                    data.append('xid', xid);
+                }
+                if (msg.data.e) data.append('email', msg.data.e);
+                if (msg.data.t) data.append('title', msg.data.t);
+                if (msg.data.d) data.append('description', msg.data.d);
+
+                data.append('url', msg.data.u);
+                data.append('projectId', msg.data.p);
+
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://me-recommend.com/get-recommend');
+                xhr.onload = () => {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        msg.ports[0].postMessage({r: JSON.parse(xhr.responseText)});
+                    } else {
+                        msg.ports[0].postMessage({r: []});
+                    }
+                };
+                xhr.send(data);
+            } catch (e) {
+                msg.ports[0].postMessage({r: []});
+            }
+        }
+
+        function processXHR(xhr, action) {
+            return function () {
+                if (
+                    xhr.readyState === XMLHttpRequest.DONE
+                    && xhr.status === 200
+                ) {
+                    let response = JSON.parse(xhr.responseText);
+                    console.log(action);
+                    console.log(response);
+
+                    if (response['xid'] && response['response']) {
+                        localStorage.setItem('MAJDI', response['response']);
+                        localStorage.setItem('LICAT', response['li_cat']);
+                        localStorage.setItem('xid', response['xid']);
+
+                        if (action === 'store') {
+                            userHistoryId = response['createId'];
+                            localStorage.setItem('userHistoryId', userHistoryId);
+                            console.log('stored id: ' + userHistoryId);
+                        }
+                    }
+                }
+            };
+        }
+
+        window.addEventListener('message', onMsg, false);
+    </script>
+
+
+
+
+
+</body></html>

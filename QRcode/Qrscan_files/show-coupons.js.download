@@ -1,0 +1,106 @@
+$(document).ready(function() {
+    const promoSite = 'https://me-promo.com/graphql';
+
+    async function getCoupons(limit) {
+        return await fetch(promoSite, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                query: '{' +
+                    'randomCoupon(limit:' + limit + ') {' +
+                        'id ' +
+                        'title ' +
+                        'expiredAtTimeStamp ' +
+                        'link ' +
+                        'linkForView ' +
+                        'code ' +
+                        'brand {' +
+                            'imageLink' +
+                        '}' +
+                    '}' +
+                '}'
+            })
+        })
+        .then(response => {
+            return response.json();
+        })
+    }
+
+    async function createResponse(coupons) {
+        return await fetch('https://me-qr.com/api/coupon/show', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                coupons: coupons
+            })
+        })
+        .then(response => {
+            return response.text();
+        })
+    }
+
+    function getNotViewedCoupons(couponsZone) {
+        return [].slice.call(couponsZone.querySelectorAll('.hidden-coupon'));
+    }
+
+    function addViewEventToCoupon(couponsZone) {
+        let viewAction = function () {
+            getNotViewedCoupons(couponsZone).forEach(function(coupon) {
+                if (
+                    (window.innerHeight - coupon.getBoundingClientRect().top) >= coupon.offsetHeight
+                    && coupon.getBoundingClientRect().bottom >= 0
+                ) {
+                    let btn = coupon.querySelector('.coupon-button');
+                    let url = new URL(window.location.href);
+
+                    if (url.hostname !== 'localhost') {
+                        sendViewAction(btn.dataset.couponId, 2);
+                    }
+
+                    coupon.classList.remove('hidden-coupon');
+                }
+            });
+        };
+
+        document.addEventListener('scroll', viewAction);
+        window.addEventListener('resize', viewAction);
+        window.addEventListener('orientationchange', viewAction);
+
+        viewAction();
+    }
+
+    function addClickEventToCoupon(couponsZone) {
+        let couponsBtn = couponsZone.querySelectorAll('.coupon-button');
+
+        Object.keys(couponsBtn).forEach(key => {
+            couponsBtn[key].addEventListener('click', function () {
+                let url = new URL(window.location.href);
+
+                if (url.hostname !== 'localhost') {
+                    sendClickAction(couponsBtn[key].dataset.couponId, 2);
+                }
+            })
+        });
+    }
+
+    (function show() {
+        let showCoupons = document.getElementById('coupon-show');
+        let limit = 6;
+
+        getCoupons(limit).then(data => {
+            let coupons = data.data.randomCoupon;
+
+            return createResponse(coupons).then(data => {
+                showCoupons.innerHTML = data;
+                addViewEventToCoupon(showCoupons);
+                addClickEventToCoupon(showCoupons);
+            });
+        })
+    })();
+});

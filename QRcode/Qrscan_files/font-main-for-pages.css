@@ -1,0 +1,344 @@
+.main-font-Arial-17-normal {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 155.69%;
+    color: #3C4858;
+    -webkit-font-family: Arial, sans-serif;
+    -webkit-font-style: normal;
+    -webkit-font-weight: normal;
+    -webkit-font-size: 17px;
+    -webkit-color: #3C4858;
+}
+
+.main-font-Arial-35-bold {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 46px;
+    color: #3E4857;
+    -webkit-font-family: Arial, sans-serif;
+    -webkit-font-style: normal;
+    -webkit-font-weight: bold;
+    -webkit-font-size: 35px;
+    -webkit-color: #3E4857;
+}
+
+.main-font-Arial-53-big {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 53px;
+    line-height: 61px;
+    color: #e2e2e2;
+    -webkit-font-family: Arial, sans-serif;
+    -webkit-font-style: normal;
+    -webkit-font-weight:  bold;
+    -webkit-font-size:  53px;
+    -webkit-color: #FFFFFF;
+
+}
+
+.main-font-Roboto-28-bold {
+    font-family: Roboto, sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px;
+    text-align: center;
+    color: #3C4858;
+    max-width: 346px;
+}
+
+.main-font-Helvetica-17-normal {
+    font-family: Helvetica, sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: left;
+
+}
+
+
+.main-font-Roboto-17-normal {
+    font-family: Roboto, sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    color: #3C4858;
+
+}
+
+.main-font-Roboto-18{
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 21px;
+    -webkit-font-family: Roboto, sans-serif;
+    -webkit-font-style: normal;
+    -webkit-font-size: 18px;
+    -webkit-line-height: 21px;
+    -moz-font-family: Roboto, sans-serif;
+    -moz-font-style: normal;
+    -moz-font-size: 18px;
+    -moz-line-height: 21px;
+
+}
+.main-font-Roboto-28-bold {
+    font-family: Roboto, sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 33px;
+    text-align: center;
+    color: #3C4858;
+    max-width: 346px;
+}
+.main-font-Roboto-17-normal {
+    font-family: Roboto, sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    color: #3C4858;
+
+}
+.main-font-weight-bold{
+    font-weight: bold;
+}
+
+.main-font-weight-normal{
+    font-weight:normal;
+}
+
+.main-font-Roboto-40-bold {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-size: 40px;
+    line-height: 47px;
+    -webkit-font-family: Roboto, sans-serif;
+    -webkit-font-style: normal;
+    -webkit-font-weight: bold;
+    -webkit-font-size: 40px;
+    -webkit-line-height: 47px;
+    color: #3C4858;
+}
+
+.main-color-text-dark{
+    color: #3C4858;
+}
+
+.main-font-Roboto-16-bolt {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    color: #3C4858;
+}
+
+.main-font-Roboto-16-bolt-white {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
+.main-Arial-28-bold {
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 35px;
+    text-align: left;
+    max-width: 235px;
+}
+
+.main-font-Helvetica-17-normal {
+    font-family: Helvetica, sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    text-align: left;
+
+}
+
+.main-font-Roboto-13 {
+    font-family: Roboto, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    color: #7F7D7D;
+    max-width: 265px;
+}
+.main-font-Roboto-12-white {
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    color: #FFFFFF;
+
+}
+
+.main-font-Roboto-13 {
+    font-family: Roboto, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    color: #7F7D7D;
+    max-width: 265px;
+}
+.main-font-Roboto-12-white {
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    color: #FFFFFF;
+
+}
+
+@-moz-document url-prefix() {
+    .main-font-Roboto-16-bolt {
+        font-family: Roboto, sans-serif;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 19px;
+        color: #3C4858;
+    }
+}
+
+.main-font-Roboto-33-bolt {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 33px;
+    line-height: 137.69%;
+    color: #3C4858;
+}
+.main-font-Arial-14-bolt {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 179.19%;
+}
+
+
+.main-font-Arial-16-normal {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 179.19%;
+    color: #3C4858;
+}
+.main-font-Roboto-24-bolt {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #9B27AF;
+}
+
+.main-font-Roboto {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+}
+
+.font-parameters-18-normal{
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 29px;
+
+    /* gr-text */
+    color: #555554;
+}
+
+.main-font-Roboto-14-bolt {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+
+
+}
+
+.main-font-Roboto-11-normal {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 16px;
+    color: #8C8C8C;
+}
+
+.main-font-Arial-9-normal {
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 179.19%;
+}
+.main-font-Montserrat {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 36px;
+    color: #FFFFFF;
+}
+
+.main-font-Montserrat-14-bold {
+    font-family:'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight:bold;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #3C4858;
+}
+
+.main-font-Roboto-40-bolt {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 122.19%;
+    color: #3C4858;
+}
+
+.main-Arial-28-bold {
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 35px;
+    text-align: left;
+    max-width: 235px;
+}
+
+@media (max-width: 475px) {
+    .main-font-Roboto-28-bold {
+        font-size: 20px;
+        width: 245px;
+
+    }
+    .main-font-Roboto-17-normal {
+        font-size: 14px;
+    }
+}
