@@ -1,0 +1,295 @@
+.logo {
+    margin-left: 20px;
+    width: 25%;
+    margin-bottom: 30px;
+}
+
+header {
+    padding: 20px;
+    background-color: #faf5f2;
+    padding-top: 20%;
+}
+
+.icon1 {
+    width: 150%;
+    margin: -18px;
+    margin-bottom: 10px;
+}
+
+.txt1 {
+    color: #5112bb;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: -5px;
+}
+.txtht{
+    color: #5112bb;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 5px;
+    border: none;
+    background-color: #fefdfb;
+}
+.txt2 {
+    color: #e5e0da;
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: -5px;
+}
+
+.col1 {
+    text-align: center;
+}
+
+.section {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    background-color: #eee9e3;
+}
+
+.nen {
+    padding: 5px;
+    background-color: #faf5f2;
+    padding-bottom: 60px;
+}
+
+.the {
+    background: #ffffff;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 30px;
+    border: 1px solid rgb(233, 231, 231);
+}
+
+.iconlp {
+    width: 150%;
+    padding-top: 5px;
+    margin-right: 55px;
+}
+
+.txtlp {
+    /* font-size: 30px; */
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.time {
+    color: grey;
+    font-size: 13px;
+}
+
+.txt4 {
+    font-size: 15px;
+}
+
+.phieu {
+    border: 1px solid rgb(233, 231, 231);
+    border-radius: 20px;
+    height: 30%;
+}
+
+.phieuphai {
+    background-color: #5818c6;
+    text-align: center;
+    padding: 10px;
+    padding-top: 10px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    color: white;
+    font-size: 15px;
+    border: none;
+    /* border-radius: 20px; */
+}
+
+.txt5 {
+    font-size: 15px;
+    font-weight: bold;
+    /* margin: 15px; */
+    margin-top: 20px;
+}
+
+.txt6 {
+    color: grey;
+    margin-top: 40%;
+    font-size: 12px;
+}
+
+.tron {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    background-color: #d5d5d5;
+    margin-left: -23px;
+    margin-top: 11px;
+    display: block;
+    background-image:
+        linear-gradient(90deg, white 50%, transparent 50%);
+}
+
+.iconcheck {
+    width: 30%;
+}
+.txtsd{
+    font-size: 13px;
+}
+.btn1 {
+    background-color: #eee9e3;
+    color: #c8c1bb;
+    border: none;
+    padding: 3px;
+    padding-right: 25px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    font-weight: bold;
+    padding-left: 20px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.btn2 {
+    font-size: 12px;
+    border: none;
+    font-weight: bold;
+    color: #555450;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+span {
+    font-weight: bold;
+}
+
+.menu {
+    background-color: #fefdfb;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border: 1px solid rgb(233, 231, 231);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    margin-top: 1000px;
+}
+
+.icon2 {
+    width: 30%;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 20% auto;
+    right: 3% !important;
+    left: 1% !important;
+    /* left: 5% !important; */
+    /* 15% from the top and centered */
+    border: 1px solid #888;
+    text-align: center;
+    width: 85% !important;
+    height: 80%;
+    padding: 10px;
+    padding-bottom: 20px;
+    
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* Could be more or less, depending on screen size */
+}
+.modal-body{
+    padding: 0% !important;
+}
+/* The Close Button */
+.close {
+    color: rgb(0, 0, 0);
+    float: right;
+    justify-content: end;
+    border: none;
+}
+.btnclose{
+    border: none;
+    background-color: #ffffff;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+hr{
+    width: 90%;
+    border: 1px solid;
+}
+
+.btnnut{
+    padding: 10px;
+    border: 1px solid #dacec6;
+    background-color: #fcfbf7;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 30px;
+    width: 90%;
+    margin: 0 auto;
+}
+.txtnut{
+    font-size: 15px;
+}
+.txtga{
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+}
+.txtend{
+    color: #5818c6;
+    font-size: 17px;
+    padding-top: 0%;
+    margin-top: 0%;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+}
+
+.model:visited{
+    background-color: #eee9e3;
+}
+.hopthu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 3px;
+    opacity: 0.95;
+    background-color: #faf5f2;
+    border: 1px solid rgb(233, 231, 231);
+}
+.change
+{
+    color: #c6bfb9 !important;
+    background-color: #eee9e3 !important;
+}
