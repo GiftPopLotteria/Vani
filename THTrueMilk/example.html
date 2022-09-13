@@ -1,97 +1,115 @@
 
-		<title>Cùng TH lật thẻ để có cơ hội trúng 2 chai Nước Uống Sữa Trái Cây TH true JUICE milk. Tham gia ngay!</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="./Page_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./Page_files/css2" rel="stylesheet">
+    <title>Cùng TH lật thẻ để có cơ hội trúng 2 chai Nước Uống Sữa Trái Cây TH true JUICE milk. Tham gia ngay!</title>
+    <style>
+        /* https://cssgradient.io/ */
+        body {
+            background: url("./THTrueMilk_files/Picture1.png "), no-repeat;
+            font-family: 'Comfortaa', cursive;
+        }
 
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" minimal-ui="">
-<meta name="zalo-platform-site-verification" content="U-MC8xZg8mfgtPHGj_P7NNpYxt6GaZucC3W">
-<meta name="keywords" content="">
-<meta name="description" content="Hàng chục ngàn e-coupon đổi 2 chai Nước Uống Sữa Trái Cây TH true JUICE milk Chuối tự nhiên hoặc Việt Quất tự nhiên đang chờ đón bạn!">
-<meta name="robots" content="index, follow">
-<meta name="revisit-after" content="1 days">
-<meta name="author" content="Adtima">
-<meta name="copyright" content="2019 Adtima">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://th.brand.zing.vn/juicemilk/">
-<meta property="og:title" content="Cùng TH lật thẻ để có cơ hội trúng 2 chai Nước Uống Sữa Trái Cây TH true JUICE milk. Tham gia ngay!">
-<meta property="og:description" content="Hàng chục ngàn e-coupon đổi 2 chai Nước Uống Sữa Trái Cây TH true JUICE milk Chuối tự nhiên hoặc Việt Quất tự nhiên đang chờ đón bạn!">
-<meta property="og:image" content="https://stc-th-juice-brand.zdn.vn/public/frontend/juice/images/unlucky.jpg">
+        .container {
+            max-width: 800px;
+        }
 
-<link rel="shortcut icon" href="https://stc-th-juice-brand.zdn.vn/public/frontend/juice/favicon.ico?v=1660814811908">
-<link href="./THTrueMilk_files/layout.css" rel="stylesheet" type="text/css">
+        /* https://codepen.io/Oddgson/pen/VPrYbv */
+        .divider {
+            position: relative;
+            margin-top: 90px;
+            height: 1px;
+        }
 
-<script src="./THTrueMilk_files/jquery.min.js.download"></script>
-<script src="./THTrueMilk_files/bootstrap.min.js.download"></script>
-<script src="./THTrueMilk_files/anime.min.js.download"></script>
-<script src="./THTrueMilk_files/gsap3.min.js.download"></script>
-<script src="./THTrueMilk_files/main.js.download"></script>
+        .div-transparent:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 5%;
+            right: 5%;
+            width: 90%;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, rgb(255,255,255), transparent);
+        }
 
-<script>
-    const baseUrl = "https://th.brand.zing.vn/juicemilk/"
-</script>
+        a.page-link {
+            color: #fff;
+        }
 
-<script defer="">
-	const handleRequest = ({ url, method, requestData = {}, handleReponse }) => {
-		if (['POST', 'PUT'].includes(method)) requestData._csrf = "cYfPmsox-0YJcSO6XzGzQ4vYyAcTFsX9nvrg"
-		const REQUEST_PAYLOAD = {
-			url,
-			type: method,
-			dataType: 'json',
-			data: {
-				...requestData
-			},
-			success: (reponseSuccess) => handleReponse && handleReponse(reponseSuccess, true),
-			error: (reponseError) => handleReponse && handleReponse(reponseError, false)
-		}
-		$.ajax({...REQUEST_PAYLOAD })
-	}
-</script>
-	<script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script></head>
-	<body class="t-th bg-home vsc-initialized">
-		<style>
-    .bl-loading {
-        display: none;
-    }
-</style>
+        .page-item.disabled .page-link, .page-link {
+            background: transparent;
+        }
 
-<div class="bl-loading" id="loading_layer">
-    <div class="loader loader--style1" title="0">
-      <svg id="loader-1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-        <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946				s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634				c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
-        <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0				C22.32,8.481,24.301,9.057,26.013,10.047z">
-          <animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animatetransform>
-        </path>
-      </svg>
+        .pagination {
+            margin-top: 1rem!important;
+        }
+        .h1 {
+    display: block;
+    padding: 40px;
+    font-size: 7vw;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: black;
+    color: white;
+    mix-blend-mode: multiply; /* Magic happens here */
+}
+    </style>
+<script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script></head>
+<body class="py-4 vsc-initialized">
+<div class="container">
+    <div class="row">
+        <div class="col text-center text-white">
+            <Div>
+                <img src="https://stc-th-juice-brand.zdn.vn/public/frontend/juice/images/taglineFull.png?v=1660814811908" alt="Nestle" style="
+                width: 200px;
+                padding-top: 50px;
+            ">
+            </Div>
+            <h1 class="mt-3">QUÀ CỦA TÔI</h1>
+
+        </div>
     </div>
+
+    <div class="divider div-transparent my-4"></div>
+
+    <div class="row">
+        <div class="col text-center">
+            <div class="d-grid gap-2">
+                <a href="./Coupon/z3719169443508_fc7cbc8825d3f545331559e0694031e6.jpg" target="_blank" rel="noopenner nofollow" class="btn btn-lg btn-outline-light d-block">2 Chai sữa THTrueMilk từ Grab</a>
+                <a href="./Coupon/z3719197068163_aff2f8e814977e2ac6718b855eaa99fe.jpg" target="_blank" rel="noopenner nofollow" class="btn btn-lg btn-outline-light d-block">2 Chai sữa THTrueMilk từ Grab</a>
+                <a href="./Coupon/z3719197080600_813053beae9812701466c45c8a648cca.jpg" target="_blank" rel="noopenner nofollow" class="btn btn-lg btn-outline-light d-block">2 Chai sữa THTrueMilk từ Grab</a>
+                <a href="./Coupon/z3719197092570_d0fc4af4500495440425c40679b5295f.jpg" target="_blank" rel="noopenner nofollow" class="btn btn-lg btn-outline-light d-block">2 Chai sữa THTrueMilk từ Grab</a>
+                <a href="./Coupon/z3719197104706_aed5cca0b6379cd59e10d4e086def8bf.jpg" target="_blank" rel="noopenner nofollow" class="btn btn-lg btn-outline-light d-block">2 Chai sữa THTrueMilk từ Grab</a>
+            
+            </div>
+
+            <!-- pagination -->
+            <nav>
+
+    </nav>
+
+        </div>
+    </div>
+
+    <div class="divider div-transparent my-4"></div>
+
+    <footer class="text-center text-white">
+        © 2021 <strong>J2TEAM</strong>. All rights reserved.
+    </footer>
 </div>
-		<section class="s-navbar"></section>
-		
-<div class="s-canvas__body off-canvas" canvas="container">
-    <div class="s-wrapper s-homepage">
-      <!-- Body-->
-      <section class="s-body">
-        <div class="homePage inPage">
-          <div class="header-1"></div>
-          <div class="tagline fadeIn">
-            
-            <img class="o-image--responsive" src="./THTrueMilk_files/taglineFull.png" alt="Nestle">
-          </div>
-          <div class="bl-product-wp">
-            <div class="text-center fadeIn text-white" style="text-shadow: 0px 4px 4px rgba(0,0,0,.25)"><b>Bạn hãy mở Zalo<br>để tham gia chương trình</b></div><b>
-            <div class="g-button fadeIn mb-0"><a class="button" href="https://zalo.me/2377106259241987588?src=NonZaloBrowser&amp;redirect_url=https://th.brand.zing.vn/juicemilk/"><span>MỞ Zalo</span></a></div>
-          </b></div><b>
-          <div class="bl-products">
-            
-            <img class="o-image--responsive" src="./THTrueMilk_files/ProductBrand.png" alt="Nestle">
-          </div>
-        </b></div><b>
-      </b></section><b>
-      <!-- End Body-->
-      <!-- Footer-->
-      <section class="s-footer">
-      </section>
-      <!-- End Footer-->
-    </b></div><b>
-  </b></div><b>
-		
-	
-</b></body></html>
+<script src="./Page_files/bootstrap.bundle.min.js.download"></script>
+<script async="" src="./Page_files/js"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-45794712-28');
+    </script>
+
+
+</body></html>
