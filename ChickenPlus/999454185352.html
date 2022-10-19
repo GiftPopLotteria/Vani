@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<title>Giftpop Voucher</title>
+<link href="./Giftpop Voucher_files/css" rel="stylesheet">
+<link href="./Giftpop Voucher_files/css(1)" rel="stylesheet">
+<script src="./Giftpop Voucher_files/jquery-1.11.3.min.js.download"></script>
+<script src="./Giftpop Voucher_files/modal.min.js.download"></script>
+<script src="./Giftpop Voucher_files/language_convert.js.download"></script>
+<!--<script src="https://cdn.jsdelivr.net/jsbarcode/3.3.20/JsBarcode.all.min.js"></script>-->
+<script type="text/javascript" src="./Giftpop Voucher_files/common.js.download"></script>
+<link href="./Giftpop Voucher_files/coupon.css" rel="stylesheet">
+<link href="./Giftpop Voucher_files/modal2.css" rel="stylesheet">
+<link rel="stylesheet" href="./Giftpop Voucher_files/modal.css">
+<script src="chrome-extension://mooikfkahbdckldjjndioackbalphokd/assets/prompt.js"></script>
+</head>
+<script src="JsBarcode.all.min.js"></script>
+
+<body class="vsc-initialized">
+    <div class="wrap">
+        <input type="hidden" id="Lang" name="Lang" value="vn">
+        <input type="hidden" id="chkstep" name="chkstep" value="pinchk">
+        <input type="hidden" id="request_status" name="request_status" value="yes">
+        <input type="hidden" id="cashbalance" name="cashbalance" value="">
+        <input type="hidden" name="error" id="error" value="">
+        <input type="hidden" id="vcode" name="vcode" value="QmsyV014MjhpRjNFNmVvYkREeTIwNmhF.VN">
+
+        <div id="coupon_vn" style="width:100%;padding:0px;">
+            <div class="inner">
+                <div class="header">
+                    <h2><a style="display: block; position: relative;" href="https://www.giftpop.vn/"> <img
+                                src="./Giftpop Voucher_files/logo.png" alt="Giftpop Logo" style="width:80%"></a></h2>
+                    <h3 class="popupFlag">
+                        <img src="./Giftpop Voucher_files/flag_vietnam.gif" alt="">
+                        <dl>
+                            <dt style="top:0px;height: 30px;"><a onclick="goVr(&#39;vn&#39;)"><img
+                                        src="./Giftpop Voucher_files/flag_vietnam.gif" alt=""></a></dt>
+                            <dt style="top:60px;height: 30px;"><a onclick="goVr(&#39;en&#39;)"><img
+                                        src="./Giftpop Voucher_files/flag_eng.gif" alt=""></a></dt>
+                            <dt style="top:30px;height: 30px;"><a onclick="goVr(&#39;kr&#39;)"><img
+                                        src="./Giftpop Voucher_files/flag_korea.gif" alt=""></a></dt>
+                        </dl>
+                    </h3>
+                    <!-- <a href="#" class="close"><img src="https://img.giftpop.vn/coupon/images/popupClose.png" alt="" /></a> -->
+                </div>
+                <div class="productGreyBack">
+                    <!--<img src="https://www.giftpop.info/upload/shBBS/" alt="" />-->
+
+                </div>
+                <div class="productGreyBack ">
+                    <img src="./Giftpop Voucher_files/onechicken.jpg.png" alt="">
+                </div>
+                <div class="couponContents ">
+                    <h5>Lotteria</h5>
+                    <h6>Toàn Quốc - Lotteria - Evoucher Chicken miễn phí 1 miếng gà rán áp dụng toàn bộ chi nhánh trên
+                        Toàn Quốc</h6>
+                    <h6>
+                        <svg id="barcode"></svg>
+                        <script>
+                            JsBarcode("#barcode", "999454185352", {
+                                width: 3,
+                                height: 140,
+                                displayValue: false
+                            });
+                        </script>
+                        <p></p>
+                        <script language="javascript">
+                            var string = "999454185352";
+                            document.write(string.slice(0, 3)+"-"+string.slice(3, 6)+"-"+string.slice(6, 9)+"-"+string.slice(9, 12));
+                        </script>
+
+                </div>
+                <!--Binh-->
+
+
+                <div class="couponInfo">
+                    <ul>
+
+                        <!-- 메시지 -->
+                        <h3>Nội dung tin nhắn</h3>
+                        <li>Cảm ơn bạn đã mua voucher của Giftpop từ Lazada.vn</li>
+
+                        <!-- 유효기간 -->
+                        <h3>Hạn SD của voucher: 31/12/2022</h3>
+
+                        <!-- 매장 -->
+
+                        <li>Sử dụng ở các cửa hàng được Lotteria chỉ định. Vui lòng xem thông tin các cửa hàng áp dụng ở
+                            bên dưới.</li>
+
+
+                        <h3>Cửa hàng SD<a
+                                href="https://z.giftpop.vn/goodsView/StoreInfo.php?goodsid=2PELZ2102536401&amp;lang=vn">+
+                                Xem cửa hàng</a></h3>
+
+
+
+                        <!-- 상품 설명 -->
+                        <h3>Thông tin sản phẩm<a
+                                href="https://z.giftpop.vn/goodsView/VoucherInfo.php?goodsid=2PELZ2102536401&amp;lang=vn">+
+                                Xem thêm</a></h3>
+                        <li>Nếu bạn đang băn khoăn tìm kiếm một quán ăn giá cả "hạt dẻ", không gian thoáng mát, tiện
+                            nghi, đồ ăn ngon, phong phú lựa chọn, sạch sẽ, dù bạn đi ăn một mình, với bạn bè, người
+                            thân, hay không gian tổ chức một bữa tiệc nhỏ nhỏ xinh xinh... Lotteria là lựa chọn tuyệt
+                            vời nhất.
+                            Voucher Tornado Strawberry Yogurt bạn có:
+                            - 1 ly kem Tornado Strawberry Yogurt.</li>
+
+                        <!-- 이미지 다운로드 -->
+                        <h3>Ảnh voucher <a
+                                href="https://img.giftpop.vn/img.php?V=QmsyV014MjhpRjNFNmVvYkREeTIwNmhF&amp;L=VN"> Tải
+                                về</a></h3>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="coupon_en" style="width:100%;padding:0px;display:none">
+            <div class="inner">
+                <div class="header">
+                    <h2><a style="display: block; position: relative;" href="https://www.giftpop.vn/"> <img
+                                src="./Giftpop Voucher_files/logo.png" alt="Giftpop Logo" style="width:80%"></a></h2>
+
+                    <h3 class="popupFlag">
+                        <img src="./Giftpop Voucher_files/flag_eng.gif" alt="">
+                        <dl>
+                            <dt style="top:0px;height: 30px;"><a onclick="goVr(&#39;vn&#39;)"><img
+                                        src="./Giftpop Voucher_files/flag_vietnam.gif" alt=""></a></dt>
+                            <dt style="top:60px;height: 30px;"><a onclick="goVr(&#39;en&#39;)"><img
+                                        src="./Giftpop Voucher_files/flag_eng.gif" alt=""></a></dt>
+                            <dt style="top:30px;height: 30px;"><a onclick="goVr(&#39;kr&#39;)"><img
+                                        src="./Giftpop Voucher_files/flag_korea.gif" alt=""></a></dt>
+                        </dl>
+                    </h3>
+                    <!-- <a href="#" class="close"><img src="https://img.giftpop.vn/coupon/images/popupClose.png" alt="" /></a> -->
+                </div>
+                <div class="productGreyBack">
+                    <!--<img src="https://www.giftpop.info/upload/shBBS/" alt="" />-->
+
+                </div>
+                <div class="productGreyBack ">
+                    <img src="./Giftpop Voucher_files/2PELZ2102536401_BASIC_coupon.jpg" alt="">
+                </div>
+
+                <div class="couponContents ">
+                    <h5>Lotteria</h5>
+                    <h6>Tornado Strawberry Yogurt</h6>
+                    <h6>
+                    </h6>
+                    <div class="barcode"><img src="./Giftpop Voucher_files/used_barcode_en.png"></div>
+                    <div class="barcodeNum">999-317-199-736</div>
+                </div>
+                <!--Binh-->
+
+
+                <div class="couponInfo">
+                    <ul>
+                        <!-- 메시지 -->
+                        <h3>Gift Message</h3>
+                        <li>Cảm ơn bạn đã mua voucher của Giftpop từ Lazada.vn</li>
+
+                        <!-- 유효기간 -->
+                        <h3>Expiry date of voucher: 31/05/2021</h3>
+                        <h3>Used date: 2021-05-31 16:11:17</h3>
+                        <!-- 매장 -->
+
+                        <li>Apply for stores that assigned by Lotteria. Please see the stores information below.</li>
+
+
+                        <h3>Available stores<a
+                                href="https://z.giftpop.vn/goodsView/StoreInfo.php?goodsid=2PELZ2102536401&amp;lang=en">+
+                                See the store</a></h3>
+
+
+                        <!-- 상품 설명 -->
+                        <h3>Product information<a
+                                href="https://z.giftpop.vn/goodsView/VoucherInfo.php?goodsid=2PELZ2102536401&amp;lang=en">+
+                                More</a></h3>
+                        <li>If youre looking for a restaurant with nice price, airy space, facilities, delicious food,
+                            diversified choice, clean, whatever you come alone, with friends, relatives, or lovely space
+                            to hold a small party...Lotteria will be is the best choice for.
+                            Voucher Tornado Strawberry Yogurt ice cream:
+                            - 1 Tornado Strawberry Yogurt ice cream.</li>
+
+                        <!-- 이미지 다운로드 -->
+                        <h3 style="display: none;">Voucher image <a
+                                href="https://img.giftpop.vn/img.php?V=QmsyV014MjhpRjNFNmVvYkREeTIwNmhF&amp;L=EN">
+                                DownLoad</a></h3>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="coupon_kr" style="width:100%;padding:0px;display:none">
+            <div class="inner">
+                <div class="header">
+                    <h2><a style="display: block; position: relative;" href="https://www.giftpop.vn/"> <img
+                                src="./Giftpop Voucher_files/logo.png" alt="Giftpop Logo" style="width:80%"></a></h2>
+
+                    <h3 class="popupFlag">
+                        <img src="./Giftpop Voucher_files/flag_korea.gif" alt="">
+                        <dl>
+                            <dt style="top:0px;height: 30px;"><a onclick="goVr(&#39;vn&#39;)"><img
+                                        src="./Giftpop Voucher_files/flag_vietnam.gif" alt=""></a></dt>
+                            <dt style="top:60px;height: 30px;"><a onclick="goVr(&#39;en&#39;)"><img
+                                        src="./Giftpop Voucher_files/flag_eng.gif" alt=""></a></dt>
+                            <dt style="top:30px;height: 30px;"><a onclick="goVr(&#39;kr&#39;)"><img
+                                        src="./Giftpop Voucher_files/flag_korea.gif" alt=""></a></dt>
+                        </dl>
+                    </h3>
+                    <!-- <a href="#" class="close"><img src="https://img.giftpop.vn/coupon/images/popupClose.png" alt="" /></a> -->
+                </div>
+                <div class="productGreyBack">
+                    <!--<img src="https://www.giftpop.info/upload/shBBS/" alt="" />-->
+
+                </div>
+                <div class="productGreyBack ">
+                    <img src="./Giftpop Voucher_files/2PELZ2102536401_BASIC_coupon.jpg" alt="">
+                </div>
+                <div class="couponContents ">
+
+                    <h5>Lotteria</h5>
+                    <h6>Tornado Strawberry Yogurt</h6>
+                    <h6>
+                    </h6>
+                    <div class="barcode"><img src="./Giftpop Voucher_files/used_barcode_kr.png"></div>
+                    <div class="barcodeNum">999-317-199-736</div>
+                </div>
+                <!--Binh-->
+
+
+                <div class="couponInfo">
+                    <ul>
+                        <!-- 메시지 -->
+                        <h3>메세지 내용</h3>
+                        <li>Cảm ơn bạn đã mua voucher của Giftpop từ Lazada.vn</li>
+
+                        <!-- 유효기간 -->
+                        <h3>바우처 만료일: 31/05/2021</h3>
+                        <h3>사용일: 2021-05-31 16:11:17</h3>
+
+                        <!-- 매장 -->
+
+                        <li>Apply for stores that assigned by Lotteria. Please see the stores information below.</li>
+
+
+                        <h3>사용매장<a
+                                href="https://z.giftpop.vn/goodsView/StoreInfo.php?goodsid=2PELZ2102536401&amp;lang=kr">+
+                                상점 보기</a></h3>
+                        <h3>상품설명<a
+                                href="https://z.giftpop.vn/goodsView/VoucherInfo.php?goodsid=2PELZ2102536401&amp;lang=kr">+
+                                더 보기</a></h3>
+                        <li>If youre looking for a restaurant with nice price, airy space, facilities, delicious food,
+                            diversified choice, clean, whatever you come alone, with friends, relatives, or lovely space
+                            to hold a small party...Lotteria will be is the best choice for.
+                            Voucher Tornado Strawberry Yogurt ice cream:
+                            - 1 Tornado Strawberry Yogurt ice cream.</li>
+
+
+                        <!-- 상품 설명 -->
+                        <!--<h3>상품설명<a href='https://z.giftpop.vn/goodsView/VoucherInfo.php?goodsid=2PELZ2102536401&lang=kr'>+ 더 보기</a></h3>
+                    <li></li>-->
+
+                        <!-- 이미지 다운로드 -->
+                        <h3 style="display: none;">쿠폰 이미지 <a
+                                href="https://img.giftpop.vn/img.php?V=QmsyV014MjhpRjNFNmVvYkREeTIwNmhF&amp;L=KR">
+                                다운로드</a></h3>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="coupon_footer_vn" style="width:100%;padding:0px; ">
+            <div class="inner inner-footer">
+                <br>
+                <div style="text-align:center">
+                    <a href="https://www.giftpop.vn/brandshop/list?view&amp;brand_code=CAFECENTRAL" target="_blank"><img
+                            src="./Giftpop Voucher_files/1662536226.jpg" alt="" style="width:90%"></a>
+                </div>
+                <div style="text-align:center">
+                    <a href="https://www.giftpop.vn/access/signup" target="_blank"><img
+                            src="./Giftpop Voucher_files/1665023142.jpg" alt="" style="width:90%"></a>
+                </div>
+                <div style="text-align:center">
+                    <a href="https://www.giftpop.vn/brandshop/list?view&amp;brand_code=TOUSLESJOURS"
+                        target="_blank"><img src="./Giftpop Voucher_files/1665643521.jpg" alt="" style="width:90%"></a>
+                </div>
+                <!-- <div style="text-align:center">
+                <a href="https://www.giftpop.vn/promotion/sub_list/GIFTPOP201807" target='_blank'><img src="https://www.giftpop.vn/upload/shBBS/1531366846-3.jpg" alt="" style="width:90%"></a>
+            </div>
+            <div style="text-align:center">
+                <a href="https://www.giftpop.vn/promotion/sub_list/20180750_KM" target='_blank'><img src="https://www.giftpop.vn/upload/shBBS/1530778314-3.jpg" alt="" style="width:90%"></a>
+            </div> -->
+
+
+
+            </div>
+        </div>
+        <div id="coupon_footer_en" style="width:100%;padding:0px; display:none">
+            <div class="inner inner-footer">
+                <br>
+                <div style="text-align:center">
+                    <a href="https://www.giftpop.vn/brandshop/list?view&amp;brand_code=CAFECENTRAL" target="_blank"><img
+                            src="./Giftpop Voucher_files/en_1662536226.jpg" alt="" style="width:90%"></a>
+                </div>
+                <div style="text-align:center">
+                    <a href="https://www.giftpop.vn/access/signup" target="_blank"><img
+                            src="./Giftpop Voucher_files/en_1665023142.jpg" alt="" style="width:90%"></a>
+                </div>
+                <div style="text-align:center">
+                    <a href="https://www.giftpop.vn/brandshop/list?view&amp;brand_code=TOUSLESJOURS"
+                        target="_blank"><img src="./Giftpop Voucher_files/en_1665643521.jpg" alt=""
+                            style="width:90%"></a>
+                </div>
+                <!-- <div style="text-align:center">
+                <a href="https://www.giftpop.vn/promotion/sub_list/GIFTPOP201807" target='_blank'><img src="https://www.giftpop.vn/upload/shBBS/1531366846-3.jpg" alt="" style="width:90%"></a>
+            </div>
+            <div style="text-align:center">
+                <a href="https://www.giftpop.vn/promotion/sub_list/20180750_KM" target='_blank'><img src="https://www.giftpop.vn/upload/shBBS/1530778314-3.jpg" alt="" style="width:90%"></a>
+            </div> -->
+
+
+
+            </div>
+        </div>
+        <div id="coupon_footer_kr" style="width:100%;padding:0px; display:none">
+            <div class="inner inner-footer">
+                <br>
+                <div style="text-align:center">
+                    <a href="https://www.giftpop.vn/brandshop/list?view&amp;brand_code=CAFECENTRAL" target="_blank"><img
+                            src="./Giftpop Voucher_files/en_1662536226.jpg" alt="" style="width:90%"></a>
+                </div>
+                <div style="text-align:center">
+                    <a href="https://www.giftpop.vn/access/signup" target="_blank"><img
+                            src="./Giftpop Voucher_files/en_1665023142.jpg" alt="" style="width:90%"></a>
+                </div>
+                <div style="text-align:center">
+                    <a href="https://www.giftpop.vn/brandshop/list?view&amp;brand_code=TOUSLESJOURS"
+                        target="_blank"><img src="./Giftpop Voucher_files/en_1665643521.jpg" alt=""
+                            style="width:90%"></a>
+                </div>
+                <!-- <div style="text-align:center">
+                <a href="https://www.giftpop.vn/promotion/sub_list/GIFTPOP201807" target='_blank'><img src="https://www.giftpop.vn/upload/shBBS/1531366846-3.jpg" alt="" style="width:90%"></a>
+            </div>
+            <div style="text-align:center">
+                <a href="https://www.giftpop.vn/promotion/sub_list/20180750_KM" target='_blank'><img src="https://www.giftpop.vn/upload/shBBS/1530778314-3.jpg" alt="" style="width:90%"></a>
+            </div> -->
+
+
+
+            </div>
+        </div>
+        <div class="inner">
+            <div>
+                <a href="tel:1900558812"
+                    style="width: 100%;text-align: center;display: block; padding-top: 10px;color: #ed1c24;padding-bottom: 10px;">Hotline
+                    <span style="color: #ed1c24;font-weight:600">1900 55 88 12</span></a>
+                <p style="text-align:center"><a href="https://www.giftpop.vn/" target="_blank"><img
+                            src="./Giftpop Voucher_files/logo.png" alt="Giftpop Logo"
+                            style="    padding: 10px 0 18px;"></a></p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+    <div id="ajaxloading" style="display:none">
+        <div><span><img src="./Giftpop Voucher_files/ajaxLoading_balck.gif" alt="alt"></span></div>
+    </div>
+
+
+    <script>
+        function goVr(lang) {
+            if (lang == "vn") {
+                $('#Lang').val("vn");
+                $("#coupon_vn").show();
+                $("#coupon_en").hide();
+                $("#coupon_kr").hide();
+                $("#coupon_use").hide();
+                $("#coupon_footer_vn").show();
+                $("#coupon_footer_en").hide();
+                $("#coupon_footer_kr").hide();
+                //$("#coupon_footer").hide();
+            }
+            if (lang == "en") {
+                $('#Lang').val("en");
+                $("#coupon_vn").hide();
+                $("#coupon_en").show();
+                $("#coupon_kr").hide();
+                $("#coupon_use").hide();
+                $("#coupon_footer_vn").hide();
+                $("#coupon_footer_en").show();
+                $("#coupon_footer_kr").hide();
+                //$("#coupon_footer").hide();
+            }
+            if (lang == "kr") {
+                $('#Lang').val("kr");
+                $("#coupon_vn").hide();
+                $("#coupon_en").hide();
+                $("#coupon_kr").show();
+                $("#coupon_use").hide();
+                $("#coupon_footer_vn").hide();
+                $("#coupon_footer_en").hide();
+                $("#coupon_footer_kr").show();
+                //$("#coupon_footer").hide();
+            }
+            if (lang == "use") {
+                $("#coupon_vn").hide();
+                $("#coupon_en").hide();
+                $("#coupon_kr").hide();
+                $("#coupon_footer").hide();
+                $("#coupon_use").show();
+                $("#coupon_footer_vn").hide();
+                $("#coupon_footer_en").hide();
+                $("#coupon_footer_kr").hide();
+            }
+            if (lang == "close") {
+                var Lang = $('#Lang').val();
+                $("#coupon_vn").hide();
+                $("#coupon_en").hide();
+                $("#coupon_kr").hide();
+                $("#coupon_footer").show();
+                $("#coupon_use").hide();
+                $("#coupon_" + Lang).show();
+                $("#coupon_footer_vn").hide();
+                $("#coupon_footer_en").hide();
+                $("#coupon_footer_kr").hide();
+            }
+
+
+        }
+
+        function goUse() {
+            var scode = $("#stroeCode").val();
+            if (scode == "") {
+                alert('\n Pleace enter the unique code number of your store!');
+                $("#stroeCode").focus();
+            } else if (scode == "12345") {
+                alert('\n Success\n\n Mobile voucher exchange processing is completed!');
+                goVr('en');
+                $("[id^='redeem']").hide();
+            } else {
+                alert('\n Error\n\n The number you entered is an unregistered number!\n\n Try again.');
+                $("#stroeCode").select();
+            }
+        }
+        $("[id^='redeem']").hide();
+    </script>
+
+
+</body>
+
+</html>}
