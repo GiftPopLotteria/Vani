@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="./img/vani2"> 
+    <link rel="icon" type="image/x-icon" href="./img/vani2.jpg">
+    <title>Vani</title>
+    <script type="text/javascript" src="JsBarcode.all.min.js"></script>
+    <link rel="stylesheet" href="hoithu.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./img/vani2.jpg">
+    <link rel="apple-touch-icon" href="./img/vani2.jpg">
+    <link rel="apple-touch-icon-precomposed" href="./img/vani2.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  </head>
+  <body>
+    <div class="fixed-top hopthu">
+      <p>Hộp thư</p>
+    </div>
+    <header>
+      <div class="row">
+        <img class="logo" src="img/logo.jpg" alt="">
+      </div>
+      <div class="row dong1">
+        <div class="col-2 col-lg-1 col1">
+          <img class="icon1" src="img/icon1.jpg" alt="">
+          <p class="txt1">Tất cả</p>
+        </div>
+        <div class="col-2 col-lg-1 col1">
+          <img class="icon1" src="img/icon2.jpg" alt="">
+          <p class="txt2">vani</p>
+        </div>
+        <div class="col-2 col-lg-1 col1">
+          <img class="icon1" src="img/icon3.jpg" alt="">
+          <p class="txt2">Coupon</p>
+        </div>
+        <div class="col-2 col-lg-1 col1">
+          <img class="icon1" src="img/icon4.jpg" alt="">
+          <p class="txt2">Thông báo</p>
+        </div>
+      </div>
+    </header>
+    <div class="section">
+      <div class="nen">
+        <div class="the">
+          <div class="row">
+            <div class="col-2 col-lg-1">
+              <img class="iconlp" src="img/Galaxy.png" alt="">
+            </div>
+            <div class="col txt3">
+              <h5 class="txtlp">Galaxy Cinema</h5>
+              <p class="time">4 phút trước</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="txt4">🎉 Coupon cho thành viên mới!</p>
+              <p class="txt4">[Mã coupon] VN0040160087 <br>Phiếu giảm giá này có thể đổi lấy voucher 40k cho mỗi hoá đơn thanh toán tại Galaxy Cinema.  <br>Hết hạn ngày: 22.01.2023 </p>
+            </div>
+          </div>
+          <div class="row phieu m-1">
+            <div class="col">
+              <p class="txt5">Galaxy Welcome Coupon 40K</p>
+              <pie class="tron"></pie>
+              <p class="txt6">Hết hạn ngày 22/11/2022</p>
+            </div>
+            <!-- Button trigger modal -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <button type="button" id="send" class="col-4 phieuphai" data-toggle="modal" data-target="#myModal">
+              <i class="bi bi-check" style="font-size: 25px;"></i>
+              <p class="txtsd">Sử dụng</p>
+              <p class="txtdsd">Đã sử dụng</p>
+            </button>
+            <div id="modals">
+              <div id="myModal" class="modal fade" role="dialog" required>
+                <div class="modal-dialog">
+                  <!-- konten modal-->
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div class="col"></div>
+                      <button type="button" class="col btnclose" data-dismiss="modal" aria-label="Close">
+                        <span class="close" aria-hidden="true">
+                          <i class="bi bi-x-lg" style="font-size: 20px;"></i>
+                        </span>
+                      </button>
+                      <p class="txtga">Galaxy Welcome Coupon 40K</p>
+                      <p class="txtend">Hết hạn ngày 22/11/2022</p>
+                      <svg id="barcode"></svg>
+                      <script>
+                        JsBarcode("#barcode", "VN0040160087", {
+                          width: 2.8,
+                          height: 220,
+                          displayValue: false
+                        });
+                      </script>
+                      <div class="barcodeNum ">VN0040160087</div>
+                      <hr>
+                      <p class="txtnut">
+                        <span class="bold">Nút [Nhân viên xác nhận] </span> sẽ được sử <br> dụng khi nhân viên phải xác nhận việc <br> sử dụng coupon tại cửa hàng.
+                      </p>
+                      <button type="button" class="btnnut" data-dismiss="modal">Nhân viên xác nhận</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="the">
+          <div class="row">
+            <div class="col-2 col-lg-1">
+              <img class="iconlp" src="img/vani.jpg" alt="">
+            </div>
+            <div class="col txt3">
+              <h5 class="txtlp">vani</h5>
+              <p class="time">Ngày 4 tháng 5</p>
+            </div>
+            <div>
+              <button class="btn1">Đã hết hạn</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="txt4">Sử dụng Mã vạch Vani, tích lũy Ice Cream, nhận Xu</p>
+              <p class="txt4">🎁 Nếu bạn tích/ sử dụng điểm bằng Mã vạch Vani tại cửa hàng của đối tác, bạn sẽ nhận được Ice Cream(tối đa 15 chiếc mỗi tháng)! Nhấn vào Ice Cream để nhận Vani Xu ngẫu nhiên.</p>
+            </div>
+          </div>
+          <button class="btn2">Xem Ice Cream</button>
+        </div>
+        <div class="the">
+          <div class="row">
+            <div class="col-2 col-lg-1">
+              <img class="iconlp" src="img/vani.jpg" alt="">
+            </div>
+            <div class="col txt3">
+              <h5 class="txtlp">vani</h5>
+              <p class="time">Ngày 12 tháng 4</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="txt4">Dù có đi bốn phương trời: mua sắm hay ăn uống, café hay xem phim, vani cũng theo chân bạn tích điểm mọi nơi!</p>
+              <p class="txt4">👉 Quên ngay đi những thủ tục làm t... <span>Xem thêm</span>
+              </p>
+            </div>
+          </div>
+          <button class="btn2">Xem chi tiết</button>
+        </div>
+      </div>
+    </div>
+    <div class="fixed-bottom menu">
+      <div class="row">
+        <div class="col col1">
+          <img class="icon2" src="img/nha.jpg" alt="">
+          <p class="txt2">Trang chủ</p>
+        </div>
+        <div class="col col1">
+          <img class="icon2" src="img/nha2.jpg" alt="">
+          <p class="txt2">Vani Xu</p>
+        </div>
+        <div class="col col1">
+          <img class="icon2" src="img/nha3.jpg" alt="">
+          <button class="txtht" onclick="openFullscreen();">Hộp thư</button>
+        </div>
+        <div class="col col1">
+          <img class="icon2" src="img/nha4.jpg" alt="">
+          <p class="txt2">Cài đặt</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      $('.txtdsd').hide();
+      $('.btnnut').click(function() {
+        $('.phieuphai').toggleClass('change');
+        $('.txtsd').hide();
+        $('.txtdsd').show();
+      });
+      /* Get the element you want displayed in fullscreen */
+      var elem = document.documentElement;
+      /* Function to open fullscreen mode */
+      function openFullscreen() {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+          /* Firefox */
+          elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+          /* Chrome, Safari & Opera */
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          /* IE/Edge */
+          elem = window.top.document.body; //To break out of frame in IE
+          elem.msRequestFullscreen();
+        }
+      }
+      /* Function to close fullscreen mode */
+      function closeFullscreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          window.top.document.msExitFullscreen();
+        }
+      }
+      // Events
+      var output = document.getElementById("myP");
+      document.addEventListener("fullscreenchange", function() {
+        output.innerHTML = "fullscreenchange event fired!";
+      });
+      document.addEventListener("mozfullscreenchange", function() {
+        output.innerHTML = "mozfullscreenchange event fired!";
+      });
+      document.addEventListener("webkitfullscreenchange", function() {
+        output.innerHTML = "webkitfullscreenchange event fired!";
+      });
+      document.addEventListener("msfullscreenchange", function() {
+        output.innerHTML = "msfullscreenchange event fired!";
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+  </body>
+</html>}
