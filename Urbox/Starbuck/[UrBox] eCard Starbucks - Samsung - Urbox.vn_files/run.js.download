@@ -1,0 +1,1727 @@
+_.config = {
+	root: 'app-root', /* Chứa element tổng */
+	api: {
+		HOME: BASE_URL+'ajax.php?act=api&code=home',
+		PRODUCTS: BASE_URL+'ajax.php?act=api&code=product',
+		ARTICLE: BASE_URL+'ajax.php?act=api&code=article',
+		TAG: BASE_URL+'ajax.php?act=api&code=tag',
+		ORDER: BASE_URL+'ajax.php?act=api&code=order',
+		SEARCH: BASE_URL+'ajax.php?act=api&code=search',
+		LOGIN: BASE_URL+'ajax.php?act=api&code=login',
+		REGISTER: BASE_URL+'ajax.php?act=api&code=register',
+		PROFILE: BASE_URL+'ajax.php?act=api&code=profile'
+	},
+};
+_.mod = {
+	gift: {},
+	cart: {}
+};
+
+_.data = {/* Chứa dữ liệu trả về từ server */
+	cart: {
+        keyStorage : COOKIE_ID+'MyCartApp',
+		keyStorageBuy : COOKIE_ID+'MyCartAppBuy',
+		keyStorageReciver : COOKIE_ID+'MyReciver',
+		items: {},
+        reciver : {},
+		total_item: 0, // số lượng item
+		total_quantity: 0, // tổng số lượng của tất cả các item
+		total_money: 0,
+		ship_money: 0,
+		showPayAbout: 1
+	},
+	user: {
+		id: 0, name: "", phone: "", email: "",
+		city : {id: 22, title: "Hà Nội"},
+		district : {id: 51, title: "Hoàn Kiếm"},
+		ward : {id: 51, title: "Hàng Buồm"},
+		street : {id: 51, title: "Mã Mây"},
+		number : "39",
+	}
+};
+
+_.__construct = function () {
+	$(".jsAgeRange").ionRangeSlider({ min: 0,
+       max: 100,
+       from: 1,
+       hide_min_max: true,
+       hide_from_to: false,});
+   $(".jsPriceRange").ionRangeSlider({ min: 0,
+       max: 1000000,
+       from: 20000,
+       hide_min_max: true,
+       hide_from_to: false,});
+    _.mod.cart.show();
+};
+
+_.mod.gift.detail = {
+	changePrice: function (obj){
+		var element = $(obj).find('option:selected');
+        var price = element.attr("price");
+
+		$('#jsGiftDetailPrice').html(_.numberFormat(price));
+	}
+};
+var clickTurn  = false;
+_.mod.cart = {
+	show: function(){
+		var arrCart = _.mod.cart.getLocalStorage();
+		if(arrCart.length>0){
+            var html = '';
+            for(x in arrCart){
+                html += _.theme.cart.item(arrCart[x]);
+            }
+            _.mod.cart.process();
+            $('.jsCartShow ul').html(html);
+            $('.jsTotalQuantity').html(_.numberFormat(_.data.cart.total_quantity));
+            $('.jsTotalMoney').html(_.numberFormat(_.data.cart.total_money));
+			$('.jsNumCart').html(_.numberFormat(_.data.cart.total_quantity)).css('visibility', 'visible');
+            $('#jsbtnsendgift').show();
+		}else{
+            $('.jsCartShow ul').html('<li>Chưa có sản phẩm nào trong giỏ hàng</li>');
+            $('.jsTotalQuantity').html(0);
+            $('.jsTotalMoney').html(0);
+            $('#jsbtnsendgift').hide();
+            $('.jsNumCart').css('visibility', 'hidden')
+		}
+	},
+	process: function(){
+		_.data.cart.total_item = 0;
+		_.data.cart.total_quantity = 0;
+		_.data.cart.total_money = 0;
+        var arrCart = _.mod.cart.getLocalStorage();
+        if(arrCart.length>0){
+            for(x in arrCart){
+                var item = arrCart[x];
+                _.data.cart.total_quantity += item.quantity;
+                _.data.cart.total_money += item.quantity*item.price;
+                _.data.cart.total_item++;
+            }
+        }
+	},
+	getLocalStorage: function (buy) {
+		keyStorage = (buy==1)?_.data.cart.keyStorageBuy:_.data.cart.keyStorage;
+        var arrCart = [];
+        if (typeof(Storage) !== "undefined") {
+            var strCart = localStorage.getItem(keyStorage);
+            if (typeof strCart == 'string' && strCart != '') {
+                arrCart = JSON.parse(strCart);
+            }
+        } else {
+            alert("Sorry, your browser does not support Web Storage...");
+        }
+        return arrCart;
+    },
+	addLocalStorage: function(id){
+        keyStorage = _.data.cart.keyStorage;
+        if(_.data.cart.items[id] != undefined){
+            if (typeof(Storage) !== "undefined") {
+                var arrCart = _.mod.cart.getLocalStorage();
+                var push = 0;
+                var arrId = [];
+				var url = 'act=customer&code=getQuantity&rand'+Math.random();
+				var post = {idGiftDetail:_.data.cart.items[id].priceId};
+				_.ajax_popup(url,'POST',post,function(data) {
+					if (data.done == 1) {
+
+						if(data.quantity >0) {
+							if(arrCart.length>0){
+								for(x in arrCart){
+									arrId.push(arrCart[x].id);
+									if(arrCart[x].id==id){
+										var quantity = arrCart[x].quantity + _.data.cart.items[id].quantity;
+										if (data.quantity >= parseInt(quantity)) {
+											arrCart[x].quantity = arrCart[x].quantity + _.data.cart.items[id].quantity;
+										} else {
+											arrCart[x].quantity = data.quantity;
+											//alert('Số lượng quà trong kho chỉ còn ' + data.quantity);
+										}
+										arrCart[x].price = _.data.cart.items[id].price;
+
+									}
+								}
+								if (arrId.indexOf(id) < 0) {
+									push = 1;
+								}
+							}else{
+								push = 1;
+							}
+							if(push==1){
+								arrCart.push(_.data.cart.items[id]);
+								/*$('#jsCartShow').show();
+								 setTimeout(function(){
+								 $('#jsCartShow').hide();
+								 }, 2000);*/
+							}
+							localStorage.setItem(keyStorage, JSON.stringify(arrCart));
+
+							_.mod.cart.show();
+
+						}else{
+							alert('Số lượng quà đã hết vui lòng chọn sản phẩm khác');
+							return false;
+						}
+					}
+				});
+
+            } else {
+                alert("Sorry, your browser does not support Web Storage...");
+            }
+		}
+	},
+    saveReciverLocalStorage: function(save,name,email,phone){
+        keyStorage = _.data.cart.keyStorageReciver;
+		if (typeof(Storage) !== "undefined") {
+            var strReciver = localStorage.getItem(keyStorage);
+            var arrReciver = {};
+            if (typeof strReciver == 'string' && strReciver != '') {
+                arrReciver = JSON.parse(strReciver);
+            }else{
+                arrReciver = {'name':'','email':'','phone':''};
+			}
+			if(save==1){
+                if(name!=''){
+                    arrReciver['name'] = name;
+                }
+                if(email!=''){
+                    arrReciver['email'] = email;
+                }
+                if(phone!=''){
+                    arrReciver['phone'] = phone;
+                }
+                localStorage.setItem(keyStorage, JSON.stringify(arrReciver));
+			}else{
+                $('#ttemail').val(arrReciver['email']);
+                $('#ttphone').val(arrReciver['phone']);
+                $('#ttfullname').val(arrReciver['name']);
+			}
+
+
+		} else {
+			alert("Sorry, your browser does not support Web Storage...");
+		}
+    },
+	updateQuantity: function(item_id, obj,type,buy){
+        var quantity = parseInt(obj.value);
+		if(type=='add'){
+            quantity = quantity+1;
+		}
+        if(type=='sub'){
+            quantity = quantity-1;
+        }
+		if(quantity<1){
+			return false;
+		}
+		var arrCart = _.mod.cart.getLocalStorage(buy);
+		var url = 'ajax.php?act=customer&code=getQuantity&rand'+Math.random()+'&'+BASE_TOKEN_NAME+'='+_.getCSRFToken();
+		var priceId = 0;
+		for(x in arrCart){
+			if(arrCart[x].id==item_id){
+				priceId = arrCart[x].priceId;
+			}
+		}
+		var post = {idGiftDetail:priceId};
+		jQuery.ajax({
+			url: url,
+			type: "POST",
+			data: post,
+			dataType: "json",
+			async: false,
+			success: function (data) {
+				if (data.done == 1) {
+					if(data.quantity >0) {
+						if (data.quantity < quantity) {
+							quantity = parseInt(data.quantity);
+						}
+					}else{
+						alert('Quà bạn mua đã hết hàng.');
+						return false;
+					}
+				}
+			}
+		});
+        if(quantity>0){
+            $(obj).val(quantity);
+			if(buy==1){
+				var intTotalQua = 0;
+				var intTotalPrice = 0;
+				for(x in arrCart){
+					if(arrCart[x].id==item_id){
+						arrCart[x].quantity = quantity;
+					}
+					intTotalQua += arrCart[x].quantity;
+					intTotalPrice += arrCart[x].quantity*arrCart[x].price;
+				}
+				localStorage.setItem(_.data.cart.keyStorageBuy, JSON.stringify(arrCart));
+				$('#jsTotalBuy').html(_.numberFormat(intTotalQua));
+				$('#jsTotalPrie').html(_.numberFormat(intTotalPrice));
+			}else{
+				for(x in arrCart){
+					if(arrCart[x].id==item_id){
+						arrCart[x].quantity = quantity;
+					}
+
+				}
+
+				localStorage.setItem(keyStorage, JSON.stringify(arrCart));
+				// sau khi thay đổi thì tính toán lại
+				_.mod.cart.process();
+
+				$('.jsTotalQuantity').html(_.numberFormat(_.data.cart.total_quantity));
+				$('.jsNumCart').html(_.numberFormat(_.data.cart.total_quantity)).css('visibility', 'visible');
+				$('.jsTotalMoney').html(_.numberFormat(_.data.cart.total_money));
+			}
+
+		}else{
+        	_.mod.cart.delToCart(item_id);
+		}
+
+	},
+	addToCart: function(id, quantity, detail,getPrice,cb){
+		// Khởi tạo nếu chưa có sản phẩm này trong giỏ
+		if(_.data.cart.items[id] == undefined){
+			_.data.cart.items[id] = {
+				id: id,
+				quantity: 0,
+				price: 0,
+                money: 0,
+			};
+		}
+
+		// Them số lượng vào item
+		_.data.cart.items[id].quantity = parseInt(quantity);
+		if(getPrice==1){
+			_.data.cart.items[id].priceId = parseInt($('#selDetail').val());
+			_.data.cart.items[id].price = parseInt($('#selDetail option:selected').attr('price'));
+		}else{
+			_.data.cart.items[id].priceId = $(detail).attr('idPrice');
+			_.data.cart.items[id].price = $(detail).attr('price');
+		}
+
+		_.data.cart.items[id].title = $(detail).attr('title');
+		_.data.cart.items[id].code_type = $(detail).attr('code-type');
+        _.data.cart.items[id].link = $(detail).attr('link');
+		_.data.cart.items[id].image = $(detail).attr('image');
+		_.data.cart.items[id].money = _.data.cart.items[id].price*_.data.cart.items[id].quantity;
+		//Add local
+		_.mod.cart.addLocalStorage(id);
+        // Tính toán lại tổng cart
+        _.mod.cart.process();
+        //$('#jsCartShow').show().delay(3000).fadeOut(1000);
+        $('.jsNumCart').html(_.numberFormat(_.data.cart.total_quantity)).css('visibility', 'visible');
+		jQuery.jGrowl("Đã thêm vào giỏ hàng!", {life: 700 });
+		if(cb==1){
+			_.show_loading();
+			setTimeout(function(){_.mod.cart.send(id)}, 1500);
+		}
+	},
+    delToCart:function (id,buy) {
+        var arrCart = _.mod.cart.getLocalStorage(buy);
+		var intTotalQua = 0;
+		var intTotalPrice = 0;
+        if(arrCart.length>0) {
+        	var arrCartNew = [];
+            for (x in arrCart) {
+                if (arrCart[x].id != id) {
+					intTotalQua += arrCart[x].quantity;
+					intTotalPrice += arrCart[x].quantity*arrCart[x].price;
+                    arrCartNew.push(arrCart[x]);
+                }
+            }
+			keyStorage = (buy==1)?_.data.cart.keyStorageBuy:_.data.cart.keyStorage;
+            localStorage.setItem(keyStorage, JSON.stringify(arrCartNew));
+        }
+        if(buy==1){
+			$('#jsTotalBuy').html(_.numberFormat(intTotalQua));
+			$('#jsTotalPrie').html(_.numberFormat(intTotalPrice));
+			$('#itemsBuild1_'+id).remove();
+			_.mod.cart.delToCart(id);
+		}else{
+			_.mod.cart.show();
+		}
+    },
+	send: function(id,submit){
+    	if(IS_CUSTOMER==1){
+			_.cookie.set('DANGNHAPMUA','');
+			var keyStorage = _.data.cart.keyStorage;
+			var keyStorageBuy = _.data.cart.keyStorageBuy;
+			if(submit==1){
+				var dataBuy =  _.mod.cart.getLocalStorage(1);
+				if(dataBuy.length>0){
+					if(!IS_CUSTOMER){
+						alert('Vui lòng đăng nhập trước khi gửi quà.');
+						_.redirect('dang-nhap.html');
+						return false;
+					}
+					var ttmessage = $('#ttmessage').val();
+					if(ttmessage==''){
+						alert('Bạn cần nhập lời nhắn');
+						$('#ttmessage').focus();
+						return false;
+					}
+					var ttemail = $('#ttemail').val();
+					if (!_.is_email(ttemail)){
+						alert('Email không hợp lệ.');
+						$('#ttemail').focus();
+						return false;
+					}
+                    var ttphone = $('#ttphone').val();
+                    if (!_.is_phone(ttphone)){
+                        alert('Số điện thoại không hợp lệ.');
+                        $('#ttphone').focus();
+                        return false;
+                    }
+					var ttDateSend = $('#ttDateSend').val();
+					var ttcoupon = $('#ttcoupon').val();
+					var ttaddress = $('#ttaddress').val();
+					var ttfullname = $('#ttfullname').val();
+					var thiep_id = $('#boxNhanqua #thanhkyouCrad').val();
+					var url = 'act=cart&code=cartSubmit&rand'+Math.random();
+                    var onepay =  $('input:radio[name="onepay"]:checked').val();
+
+                    var post = {ttDateSend:ttDateSend,onepay:onepay,ttmessage: ttmessage,ttaddress: ttaddress, ttemail : ttemail,ttphone : ttphone,thiep_id:thiep_id,ttfullname : ttfullname, ttcoupon : ttcoupon, dataBuy : JSON.stringify(_.toObject(dataBuy))};
+					if($('#boxttthanhtoan').css('display')=='none'){
+                        $('#boxttguiqua').hide();
+                        $('#boxttthanhtoan').show();
+					}else{
+                        if(onepay==undefined){
+                            alert('Vui lòng chọn cổng thanh toán.');
+                            return false;
+						}else{
+                            if($('#checkPay').is(":checked")==false){
+                                alert('Bạn cần nhấn Tôi đã đọc & chấp nhận điều khoản thanh toán.');
+                                $('#checkPay').focus();
+                                return false;
+                            }
+                            if(!clickTurn) {
+                                clickTurn = true;
+                                _.ajax_popup(url, 'POST', post, function (data) {
+                                    _.mod.cart.saveReciverLocalStorage(1,ttfullname,ttemail,ttphone);
+                                    if (data.done == 0) {
+                                        clickTurn = false;
+                                        if (data.msg == 'vaild_email') {
+                                            $('#boxttguiqua').show();
+                                            $('#boxttthanhtoan').hide();
+                                            alert('Email không hợp lệ.');
+                                            $('#ttemail').focus();
+                                            return false;
+                                        }
+                                        else if (data.msg == 'notLogin') {
+                                            alert('Vui lòng đăng nhập trước khi gửi quà.');
+                                            _.redirect('dang-nhap.html');
+                                        }
+                                        else if (data.msg == 'couponerr') {
+                                            $('#boxttguiqua').show();
+                                            $('#boxttthanhtoan').hide();
+                                            alert('Mã khuyến mại của bạn không đúng hoặc không được áp dụng cho đơn hàng này.');
+                                            $('#ttcoupon').focus();
+                                            return false;
+                                        }
+                                        else if (data.msg == 'quantity') {
+                                            alert('Quà tặng ' + data.gift.name + ' đã hết hoặc số lượng không đủ, vui lòng chọn lại.');
+                                            return false;
+                                        }else if (data.msg == 'negative') {
+                                            alert('Bạn vui lòng chọn số lượng quà muốn mua.');
+                                            return false;
+                                        }else if (data.msg == 'empty') {
+                                            alert('Bạn vui lòng chọn quà muốn tặng trước.');
+                                            return false;
+                                        }else if (data.msg == 'recently') {
+                                            alert('Hệ thống đang xử lý đơn hàng bạn mua trước đó. Vui lòng đợi trong giây lát.');
+                                            return false;
+                                        }else if (data.msg == 'giftExit') {
+                                            alert('1 trong số quà tặng bạn đặt mua đã hết hạn, bạn hãy chọn lại quà khác.');
+                                            return false;
+                                        }
+                                        else {
+                                            alert('Có lỗi xảy ra.');
+                                            _.reload();
+                                        }
+                                    }
+                                    else {
+
+                                        //Xoa gio hang
+                                        var arrCartNew = [];
+                                        var arrCart = _.mod.cart.getLocalStorage();
+                                        if (id > 0) {
+                                            for (x in arrCart) {
+                                                if (arrCart[x].id != id) {
+                                                    arrCartNew.push(arrCart[x]);
+                                                }
+                                            }
+                                        }
+                                        localStorage.setItem(keyStorageBuy, '');
+                                        localStorage.setItem(keyStorage, arrCartNew);
+                                        $('#boxNhanqua').modal('hide');
+                                        if (data.cart_id > 0) {
+                                            window.location.href = data.url;
+                                        } else {
+                                            window.location.href = data.url;
+                                            //Call Thanh Toan
+                                            //if (window.vnpay) {
+                                            //    vnpay.open({width: 480, height: 600, url: data.url});
+                                            //} else {
+                                            //    window.location.href = x.data;
+                                            //}
+                                        }
+
+
+                                    }
+                                });
+                            }
+						}
+					}
+				}else{
+					alert('Bạn chưa có sản phẩm nào trong giỏ.');
+					return false;
+				}
+			}else{
+				//Shop gio hang
+				var arrCart = _.mod.cart.getLocalStorage();
+
+				var arrCartNew = [];
+				var arrCartBuy = [];
+				if(id>0){
+					//Gio hang 1 sp
+					for (x in arrCart) {
+						if (arrCart[x].id != id) {
+							arrCartNew.push(arrCart[x]);
+						}else{
+							arrCartBuy.push(arrCart[x]);
+						}
+					}
+				}else{
+					arrCartBuy = arrCart;
+				}
+				localStorage.setItem(keyStorageBuy, JSON.stringify(arrCartBuy));
+				//Tao gio hang thanh toan
+				if(arrCartBuy.length>0){
+					var html = '';
+					var intTotalQua = 0;
+					var intTotalPrice = 0;
+					var checkCodeType = 0;
+					for(x in arrCartBuy){
+						intTotalQua += arrCartBuy[x].quantity;
+						intTotalPrice += arrCartBuy[x].quantity*arrCartBuy[x].price;
+						html += _.theme.cart.item(arrCartBuy[x],1);
+						if(arrCartBuy[x].code_type==5){
+                            checkCodeType = 1;
+						}
+					}
+					if(checkCodeType==1){
+                        $('#ttaddress').removeClass('hidden');
+					}
+					$('#jsTotalBuy').html(_.numberFormat(intTotalQua));
+					$('#jsTotalPrie').html(_.numberFormat(intTotalPrice));
+					$('#cartBuy').html(html);
+
+                    _.mod.cart.saveReciverLocalStorage(2);
+
+					$('#boxNhanqua').modal('show');
+					(function($){
+						$("#jscartScroll").mCustomScrollbar({
+							setHeight:340,
+							theme:"minimal-dark"
+						});
+					})(jQuery);
+				}
+			}
+		}else{
+			alert('Bạn cần đăng nhập để tặng quà');
+			_.cookie.set('DANGNHAPMUA',document.URL);
+			_.redirect('dang-nhap.html');
+		}
+	},
+	showThanhtoan:function(){
+
+		$('#boxttguiqua').hide();
+		$('#boxttthanhtoan').show();
+
+		var a = ('<div class="boxIndoTTCN" style="border-bottom-style: dashed">THÔNG TIN Thanh toán</div><div><div align="center" style="margin: auto;"><div style="\n' +
+            '    margin:  10px 0;\n' +
+            '    text-align:  left;\n' +
+            '">\n' +
+            '    <input type="radio" name="onepay" value="2" id="onepayvisa"><label for="onepayvisa" style="\n' +
+            '    font-weight: 300;\n' +
+            '    display:  inline;\n' +
+            '">&nbsp;&nbsp;Thẻ tín dụng, thẻ ghi nợ, thẻ trả trước mang thương hiệu Quốc tế (do ngân hàng tại Việt Nam hoặc nước ngoài phát hành)</label>\n' +
+            '    </div>\n' +
+            '    <a style="display: none" href="javascript:void(0)">\n' +
+            '        \n' +
+            '        <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') 0px 0px;float: left;"></p>\n' +
+            '        \n' +
+            '        \n' +
+            '        <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -136px 0px;float: left;"></p>\n' +
+            '        \n' +
+            '        \n' +
+            '        <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -408px 0px;float: left;"></p>\n' +
+            '        \n' +
+            '        \n' +
+            '        <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -272px 0px;float: left;"></p>\n' +
+            '        \n' +
+            '        \n' +
+            '        <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -477px 0px;float: left;"></p>\n' +
+            '        \n' +
+            '    </a>\n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '</div><div align="center" style="margin:auto;width: 490px;"><div style="\n' +
+            '    margin:  10px 0;\n' +
+            '    text-align:  left;\n' +
+            '    float: left;\n' +
+            '    width: 100%;\n' +
+            '">\n' +
+
+            '    <input type="radio" name="onepay" value="2" id="onepaynoidia"><label for="onepaynoidia" style="\n' +
+            '    font-weight: 300;\n' +
+            '    display:  inline;\n' +
+            '">&nbsp;&nbsp;Các loại thẻ nội địa - ATM do các ngân hàng nội địa phát hành:</label>\n' +
+            '    </div>\n' +
+            '    <div style="float: left;width: 100%;display: none">\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -544px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -748px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1705px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -816px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1226px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1500px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1022px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '    </div>\n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    <div style="float: left;width: 100%;display: none">\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -680px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -954px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1294px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1158px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1090px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1569px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1637px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '    </div>\n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    <div style="float: left;width: 100%;display: none">\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1773px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1842px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '        <a href="javascript:void(0)">\n' +
+            '            <p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1431px 0px;float: left;"></p>\n' +
+            '        </a>\n' +
+            '\t\t<a href="javascript:void(0)">\n' +
+            '\t\t\t<p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1910px 0px;float: left;"></p>\n' +
+            '\t\t</a>\n' +
+            '\t\t<a href="javascript:void(0)">\n' +
+            '\t\t\t<p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -1977px 0px;float: left;"></p>\n' +
+            '\t\t</a>\n' +
+            '\t\t<a href="javascript:void(0)">\n' +
+            '\t\t\t<p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -2045px 0px;float: left;"></p>\n' +
+            '\t\t</a>\n' +
+            '\t\t<a href="javascript:void(0)">\n' +
+            '\t\t\t<p style="height: 52px;width: 68px;background: url(\'https://onepay.vn/documents/payment/all_logo_bordered.png\') -2113px 0px;float: left;"></p>\n' +
+            '\t\t</a>\n' +
+            '    </div>\n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '    \n' +
+            '</div></div>');
+	}
+}
+
+_.theme = {
+	cart: {
+		item: function(item,buy){
+			var quantity = item.quantity;
+			/*var url = 'ajax.php?act=customer&code=getQuantity&rand'+Math.random()+'&'+BASE_TOKEN_NAME+'='+_.getCSRFToken();
+			var post = {idGiftDetail:item.priceId};
+			jQuery.ajax({
+				url: url,
+				type: "POST",
+				data: post,
+				dataType: "json",
+				async: false,
+				success: function (data) {
+					if (data.done == 1) {
+						if(data.quantity >0) {
+							if (data.quantity < parseInt(item.quantity)) {
+								quantity = parseInt(data.quantity);
+							}
+						}else{
+							alert('Quà bạn mua đã hết hàng.');
+							return false;
+						}
+					}
+				}
+			});*/
+
+			return _.join
+            ('<li id="itemsBuild'+buy+'_'+item.id+'" >')
+            	('<a class="bimg" href="'+item.link+'">')
+            		('<img src="style/images/blank.gif" width="100" height="100" style="background-image: url('+item.image+'\');background-size: contain;"/>')
+                ('</a>')
+                ('<div class="binfo">')
+                	('<div class="binfoTit">'+item.title+'</div>')
+                	('<div id="jsMoney_'+item.id+'" class="binfoPrice"><b>'+_.numberFormat(item.price)+'</b> <i>VND</i></div>')
+                	('<div class="binfoQua">')
+                		('<input id="quantity'+buy+'_'+item.id+'" type="text" onmouseup="return false;" onchange="_.mod.cart.updateQuantity('+item.id+', this,0,'+buy+')" value="'+quantity+'"/>')
+                		('<a onclick="_.mod.cart.updateQuantity('+item.id+', document.getElementById(\'quantity'+buy+'_'+item.id+'\'),\'add\','+buy+')" class="btnup" href="javascript:void(0)"></a>')
+                		('<a onclick="_.mod.cart.updateQuantity('+item.id+', document.getElementById(\'quantity'+buy+'_'+item.id+'\'),\'sub\','+buy+')" class="btndow" href="javascript:void(0)"></a>')
+                	('</div>')
+                ('</div>')
+                ('<div class="baction">')
+                	('<a onclick="_.mod.cart.delToCart('+item.id+','+buy+')" class="del" href="javascript:void(0)"></a>')
+                	(buy==1?'':'<a onclick="_.mod.cart.send('+item.id+')" class="gift" href="javascript:void(0)"></a>')
+                ('</div>')
+                ('<div class="c"></div>')
+			('</li>')();
+		},
+		customer: function(item){
+			var html = _.join
+			('<li>')
+				('<div class="item-content">')
+					('<div class="item-inner">')
+						('<div class="item-input">')
+							('<input type="text" placeholder="Tên quý khách">')
+						('</div>')
+					('</div>')
+				('</div>')
+			('</li>')
+			('<li>')
+				('<div class="item-content">')
+					('<div class="item-inner">')
+						('<div class="item-input">')
+							('<input type="text" placeholder="Điện thoại" class="numpad" readonly="readonly">')
+						('</div>')
+					('</div>')
+				('</div>')
+			('</li>')
+			();
+
+			return html;
+		},
+		payAbout: function(){
+			var html = _.join
+			('<div class="popover popover-pay-about">')
+				('<div class="popover-angle"></div>')
+				('<div class="popover-inner">')
+					('<div class="content-block">')
+						('<p>Khi chọn hàng xong, Bạn ấn vào đây để kiểm tra đơn hàng lần cuối rồi gửi cho Gạo lứt. Cảm ơn bạn</p>')
+						('<p><a href="javascript:void(0)" class="btn btn-purple" onclick="_.func.closePopover()">Đóng lại</a></p>')
+					('</div>')
+				('</div>')
+			('</div>')
+			();
+
+			return html
+		}
+	}
+}
+
+_.__construct();
+
+(function($){
+    $(window).on("load",function(){
+        // $("#jscartheader").mCustomScrollbar({
+        //     setHeight:340,
+        //     theme:"minimal-dark"
+        // });
+		// $(".contentB").mCustomScrollbar({
+		// 	setHeight:180,
+		// 	theme:"minimal-dark"
+		// });
+		//
+        // $(".dDoiquanote").mCustomScrollbar({
+        //     theme:"minimal-dark"
+        // });
+		//
+        // $(".dDoiquaShow .content").mCustomScrollbar({
+        //     theme:"minimal-dark"
+        // });
+
+    });
+})(jQuery);
+$(document).bind('click', function(e) {
+	var $clicked = $(e.target);
+	if (!$clicked.parents().hasClass("rt_listingBuildClick")) {
+		jQuery('.rt_os_Gen').hide();
+	}
+});
+if(URL_PARAMS.page!='nhanqua'){
+	$(window).scroll(function(){
+		if($(this).scrollTop() > 60) {
+			$(".headertop").addClass('headerFixScroll');
+			$(".headerFixheight").height(60);
+		} else {
+			$(".headertop").removeClass('headerFixScroll');
+			$(".headerFixheight").height(0);
+		}
+
+	});
+}
+
+function rt_slideToggle(id) {
+	if (typeof id == 'undefined') {
+		jQuery('.rt_os_Gen').hide();
+	} else {
+		jQuery(".rt_os_Gen").each(function() {
+			if (jQuery(this).css('display') != 'none') {
+				jQuery(this).hide();
+			} else if (jQuery(this).attr("id") == id) {
+				jQuery('#' + id).slideToggle();
+			}
+		});
+	}
+}
+function changeSex(obj) {
+	var sex = $(obj).find('#sex').val();
+	if(sex==1){
+		$(obj).find('#sex').val(-1);
+		$('.cbBuild').addClass('cbBuild-1');
+		$('.cbBuild').removeClass('cbBuild0');
+	}else if(sex==-1){
+		$(obj).find('#sex').val(0);
+		$('.cbBuild').addClass('cbBuild0');
+		$('.cbBuild').removeClass('cbBuild-1');
+	}else{
+		$(obj).find('#sex').val(1);
+		$('.cbBuild').removeClass('cbBuild-1');
+		$('.cbBuild').removeClass('cbBuild0');
+	}
+}
+$('#luachonkhac').click(function(){
+	$('.abtngift').addClass('hidden');
+	if($(this).prop("checked") == true){
+		$('#jsBdoiqua').removeClass('hidden');
+	}
+	else {
+		$('#jsBnhanqua').removeClass('hidden');
+	}
+});
+$(document).ready(function() {
+	$(".parent .rt_radioCss").change(function() {
+		$('#jsCategoryName').html($(this).attr('data-text'));
+	});
+	if(URL_PARAMS.page!='dangnhap'){
+		if(_.cookie.get('DANGNHAPMUA')!=''&&IS_CUSTOMER>0){
+			_.mod.cart.send(0,0);
+		}
+	}
+
+    $(function () {
+        var jcarousel = $('.jcarousel');
+
+        jcarousel
+            .on('jcarousel:reload jcarousel:create', function () {
+                jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+            })
+            .jcarousel({
+                wrap: 'circular',
+                animation: {
+                    duration: 1800,
+                    easing: 'linear',
+                    complete: function () {
+                    }
+                },
+                transitions: Modernizr.csstransitions ? {
+                        transforms: Modernizr.csstransforms,
+                        transforms3d: Modernizr.csstransforms3d,
+                        easing: 'ease'
+                    } : false
+            }).jcarouselAutoscroll({
+            interval: 6000,
+            target: '+=1',
+            autostart: true
+        });
+		var jcarousel2 = $('.jcarousel2');
+
+		jcarousel2
+			.on('jcarousel:reload jcarousel:create', function () {
+				jcarousel2.jcarousel('items').width(jcarousel2.innerWidth());
+			})
+			.jcarousel({
+				wrap: 'circular',
+				transitions: Modernizr.csstransitions ? {
+					transforms: Modernizr.csstransforms,
+					transforms3d: Modernizr.csstransforms3d,
+					easing: 'ease'
+				} : false
+			}).jcarouselAutoscroll({
+            interval: 8000,
+            target: '+=1',
+            autostart: true
+        });
+		$('.jcarousel3').on('jcarousel:reload jcarousel:create', function () {
+			jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+		})
+			.jcarousel({
+				wrap: 'circular',
+				animation: {
+					duration: 1200,
+					easing: 'linear',
+					complete: function () {
+					}
+				},
+				transitions: Modernizr.csstransitions ? {
+					transforms: Modernizr.csstransforms,
+					transforms3d: Modernizr.csstransforms3d,
+					easing: 'ease'
+				} : false
+			}).jcarouselAutoscroll({
+			interval: 3000,
+			target: '+=1',
+			autostart: true
+		});
+        $('.jcarousel-control-prev')
+            .on('jcarouselcontrol:active', function () {
+                $(this).removeClass('inactive');
+            })
+            .on('jcarouselcontrol:inactive', function () {
+                $(this).addClass('inactive');
+            })
+            .jcarouselControl({
+                target: '-=1'
+            });
+
+        $('.jcarousel-control-next')
+            .on('jcarouselcontrol:active', function () {
+                $(this).removeClass('inactive');
+            })
+            .on('jcarouselcontrol:inactive', function () {
+                $(this).addClass('inactive');
+            })
+            .on('click', function (e) {
+                e.preventDefault();
+            })
+            .jcarouselControl({
+                target: '+=1'
+            });
+
+        $('.jcarousel-pagination')
+            .on('jcarouselpagination:active', 'a', function () {
+                $(this).addClass('active');
+            })
+            .on('jcarouselpagination:inactive', 'a', function () {
+                $(this).removeClass('active');
+            })
+            .on('click', function (e) {
+                e.preventDefault();
+            })
+            .jcarouselPagination({
+                item: function (page) {
+                    return '<a href="#' + page + '">' + page + '</a>';
+                }
+            });
+    });
+});
+
+_.customer = {
+	loginSubmit: function(obj){
+		var userPass = $('input[name=userPass]', obj).val();
+		var userEmail = $('input[name=userEmail]', obj).val();
+		var keepLogin = _.get_ele('keepLogin');
+        cookie = 'off';
+        if(keepLogin){
+            cookie = keepLogin.checked ? 'on' : 'off';
+        }
+		if (!_.is_email(userEmail)){
+			alert('Email không hợp lệ.');
+			$('input[name=userEmail]', obj).focus();
+			return false;
+		}
+
+		if (userPass.length<6){
+			alert('Mật khẩu tối thiểu phải có 6 kí tự.');
+			$('input[name=userPass]', obj).focus();
+			return false;
+		}
+		var url = 'act=customer&code=login&rand'+Math.random();
+		var post = {userEmail: userEmail, userPass : userPass,set_cookie: cookie};
+		_.ajax_popup(url,'POST',post,function(data){
+			if(data.err == -1){
+				if(data.msg == 'vail_email') {
+					alert('Email không hợp lệ.');
+					$('input[name=userEmail]', obj).focus();
+					return false;
+				}
+				else if(data.msg == 'not_email') {
+					alert('Tải khoản không tồn tại.');
+					$('input[name=userEmail]', obj).focus();
+					return false;
+				}
+				else if(data.msg == 'vail_pass') {
+					alert('Sai mật khẩu.');
+					$('input[name=userPass]', obj).focus();
+					return false;
+				}
+				else if(data.msg == 'active') {
+					alert('Tài khoản bạn chưa được kích hoạt. Vui lòng kiểm tra Email để kích hoạt tài khoản');
+                    _.redirect(data.url);
+				}
+				else if(data.msg == 'facepass') {
+					alert('Tài khoản của bạn đã được đăng ký qua Facebook vui lòng nhập mật khẩu.');
+                    _.redirect(data.url);
+				}
+				else{
+					alert('Có lỗi xảy ra.');
+					_.reload();
+				}
+			}
+			else{
+				if(_.cookie.get('DANGNHAPMUA')!=''){
+					_.redirect(_.cookie.get('DANGNHAPMUA'));
+				}else{
+                    window.history.back()
+					//_.redirect(BASE_URL);
+				}
+
+			}
+		});
+
+		return false;
+
+	},
+    editPass:function (obj) {
+        var user_password = $('input[name=passold]', obj).val();
+        if(user_password==''){
+            return _.raiseError('#passold', 'Bạn chưa nhập lại mật khẩu cũ.', '#passold')
+		}
+        var url = 'act=customer&code=valid-Pass&rand'+Math.random();
+        var post = {pass: user_password};
+        _.ajax_popup(url,'POST',post,function(data){
+            if(data.err == -1){
+                _.closeErr('#passold');
+                return _.raiseError('#passold', 'Mật khẩu cũ bạn nhập không chính xác.', '#passold')
+            }
+            else{
+                _.closeErr('#passold');
+                var pass = $('input[name=pass]', obj).val();
+                var pass1 = $('input[name=pass1]', obj).val();
+                if (pass.length < 6) {
+                    return _.raiseError('#pass', 'Mật khẩu tối thiểu phải có 6 kí tự.', '#pass')
+                }
+                _.closeErr('#pass');
+                if (pass1.length == 0) {
+                    return _.raiseError('#pass1', 'Bạn vui lòng nhập lại mật khẩu.', '#pass1')
+                }
+                _.closeErr('#pass1');
+                if (pass != pass1) {
+                    return _.raiseError('#pass1', 'Mật khẩu không khớp.', '#pass1')
+                }
+                _.closeErr('#pass1');
+                obj.submit();
+            }
+        });
+
+    },
+	edit: function(obj,avatar){
+		if(avatar==1){
+			obj.submit();
+		}else{
+			var first_name = $('input[name=first_name]', obj).val();
+			if (first_name == '') {
+				return _.raiseError('#first_name', 'Vui lòng nhập họ tên đầy đủ.', '#first_name')
+			}
+			_.closeErr('#first_name');
+			var last_name = $('input[name=last_name]', obj).val();
+			if (last_name == '') {
+				return _.raiseError('#last_name', 'Vui lòng nhập họ tên đầy đủ.', '#last_name')
+			}
+			_.closeErr('#last_name');
+			var email = $('input[name=email]', obj).val();
+			if (email == '') {
+				return _.raiseError('#email', 'Vui lòng nhập email.', '#email');
+			}
+			_.closeErr('#email');
+			if(!_.is_email(email)){
+				return _.raiseError('#email', 'Email không đúng định dạng.', '#email')
+			}
+			_.closeErr('#email');
+			var phone = $('input[name=phone]', obj).val();
+			if (phone == '') {
+				return _.raiseError('#phone', 'Vui lòng nhập số điện thoại.', '#phone')
+			}
+			_.closeErr('#phone');
+			obj.submit();
+		}
+
+
+	},
+	regEmail:function () {
+		var email = $('#regEmail').val();
+		if (!_.is_email(email)){
+			alert('Email không hợp lệ.');
+			$('#regEmail').focus();
+			return false;
+		}
+		var url = 'act=customer&code=register&rand'+Math.random();
+		var post = {email: email};
+		_.ajax_popup(url,'POST',post,function(data){
+			if(data.err == -1){
+				if(data.msg == 'vail_email') {
+					alert('Email không hợp lệ.');
+					$('#regEmail').focus();
+					return false;
+				}else if(data.msg == 'facepass') {
+                    alert('Tài khoản của bạn đã được đăng ký qua Facebook vui lòng nhập mật khẩu.');
+                    _.redirect(data.url);
+				}
+				else{
+					alert(data.msg);
+				}
+			}
+			else{
+				alert(data.msg);
+			}
+		});
+
+		return false;
+	},
+	activeEmail:function (obj) {
+		var user_password = $('input[name=userPass]', obj).val();
+		var user_password_confirm = $('input[name=userPass1]', obj).val();
+		if (user_password.length < 6) {
+			return _.raiseError('#userPass', 'Mật khẩu tối thiểu phải có 6 kí tự.', '#userPass')
+		}
+		_.closeErr('#userPass');
+		if (user_password_confirm.length == 0) {
+			return _.raiseError('#userPass', 'Bạn vui lòng nhập lại mật khẩu.', '#userPass')
+		}
+		_.closeErr('#userPass1');
+		if (user_password_confirm != user_password) {
+			return _.raiseError('#userPass', 'Mật khẩu không khớp.', '#userPass')
+		}
+		_.closeErr('#userPass');
+		obj.submit();
+	},
+	receivinggifts:function (doiqua) {
+		var thanhkyouSms = $('#thanhkyouSms').val();
+		var thanhkyouCrad = $('#thanhkyouCrad').val();
+		var thanhkyoucode = $('#thanhkyoucode').val();
+		if(thanhkyouSms==''){
+			return _.raiseError('#thanhkyouSms', 'Bạn hãy nhập lời cảm ơn.', '#thanhkyouSms');
+		}
+		_.closeErr('#thanhkyouSms');
+		var url = 'act=customer&code=receivinggifts&rand'+Math.random();
+		var post = {thanhkyouSms: thanhkyouSms,thanhkyouCrad:thanhkyouCrad,thanhkyoucode:thanhkyoucode,doiqua:doiqua};
+		if(!clickTurn){
+            clickTurn = true;
+            _.ajax_popup(url,'POST',post,function(data){
+                if(data.err == -1){
+                    alert(data.msg);
+                    return false;
+                }
+                else{
+
+                    if(doiqua==1){
+                        window.location = data.urldoiqua;
+                    }else{
+
+						if(data.code_type==5){
+                            var html = '<div class="smsTit">';
+                            html += 'MÓN QUÀ ĐƯỢC GỬI<br/>KÈM THEO LỜI NHẮN';
+                            html += '</div>';
+                            html += '<div class="smsContent">'+thanhkyouSms+'</div>';
+                            $('#jsShowGiftCoupon').html(html);
+						}else{
+                            var html = '<div class="smsTit">';
+                            html += 'MÓN QUÀ ĐƯỢC GỬI<br/>KÈM THEO LỜI NHẮN';
+                            html += '</div>';
+                            html += '<div class="smsContent">'+thanhkyouSms+'</div>';
+                            html += '<div class="smsTit">MÃ CODE CỦA SẢN PHẨM</div>';
+                            html += '<div class="smsCoupon">'+data.assign.code+'</div>';
+                            html += '<div class="smsTit">MÃ CODE</div>';
+                            html += '<div align="center" class="mB20">	<img src="style/images/blank.gif" class="imageCover" width="112" height="112" style="background-image: url(\''+data.barcoe+'\')"/></div>';
+                            html += '<div class="smsTit">HẠN SỬ DỤNG : '+((data.assign.expired>0)?data.assign.expired_fm:'Vô thời hạn')+'</div>';
+                            html += '<div class="smsTit">Vui lòng cung cấp mã code cho nhân viên bán hàng để nhận được sản phẩm tương ứng.</div>';
+                            html += '	<a href="'+data.assign.nccactive+'"><b class="red">Cửa hàng kích hoạt</b></a>';
+                            $('#jsShowGiftCoupon').html(html);
+						}
+
+
+                    }
+
+                }
+            });
+
+		}
+
+
+	},
+	activeGifts:function (mqt,codencc) {
+		$('#vnpay_overlay').show();
+		_.confirm('Bạn có chắc chắn muốn kích hoạt mã quà tặng này?', function(){
+			if(mqt != ''){
+				_.ajax_popup('act=customer&code=activeGifts&rand'+Math.random(),'POST',
+					{mqt:mqt,codencc:codencc},
+					function(j){
+						$('#vnpay_overlay').hide();
+						if(j.done==0){
+							if(j.msg=='notuse'){
+								alert('Không kích hoạt được mã quà tặng này.');
+							}else if(j.msg=='codewrong'){
+								alert('Mã quà tặng không đúng.');
+							}else if(j.msg=='not_login'){
+								alert('Bạn cần đăng nhập trước khi kích hoạt.');
+							}else if(j.msg=='nccwrong'){
+								alert('Không tìm thấy nhà cung cấp.');
+							}else if(j.msg=='notoffice'){
+								alert('Mã quà tặng:'+mqt+' không được áp dụng với cửa hàng này.');
+							}else{
+								alert('Có lỗi xảy ra.');
+							}
+						}else{
+							alert('Đã kích hoạt mã quà tặng thành công');
+							if(codencc!=''&&codencc!=undefined){
+								_.redirect('home.html');
+							}else{
+								//_.redirect('nha-cung-cap.html');
+								$('#jsAccTime').html(j.used);
+								$('#jsPrintBtn').removeClass('hidden');
+							}
+						}
+					});
+			}
+		});
+	},
+	chandeGifts:function (idCartDetail,idGift,idPrice) {
+		$('#vnpay_overlay').show();
+		_.confirm('Bạn có chắc chắn muốn đổi quà tặng này?', function(){
+			_.ajax_popup('act=customer&code=changegifts&rand'+Math.random(),'POST',
+				{idCartDetail:idCartDetail,idGift:idGift,idPrice:idPrice},
+				function(j){
+					$('#vnpay_overlay').hide();
+					if(j.done==0){
+						if(j.msg=='not_gift'){
+							alert('Không tìm thấy quà.');
+						}else if(j.msg=='not_price'){
+							alert('Giá quà tặng không đúng.');
+						}else if(j.msg=='price'){
+							alert('Giá sản phẩm đổi lớn hơn sản phẩm bạn mua.');
+						}else{
+							alert(j.msg);
+						}
+					}else{
+						alert('Bạn đã đổi quà thành công.');
+						_.redirect(j.url);
+					}
+				});
+		});
+	},
+	confirm_gift:function (idCartDetail,idGift,idPrice,type) {
+		$('#confirm_gift').modal('show');
+		let button = "<button class='v2_btn v2_btn-active w350' onclick='_.customer.chandeGiftsVpbank("+idCartDetail+","+idGift+","+idPrice+",1)'>Nhận quà</button>";
+		let name = $("#box_name_gift").val();
+		$("#confirm_gift_name").html(name);
+		$("#cf_giftok").html(button);
+	},
+    chandeGiftsVpbank:function (idCartDetail,idGift,idPrice,type) {
+
+        if(type==1){
+        //	$('#vnpay_overlay').show();
+           // _.confirm('Bạn có chắc chắn lựa chọn<br/> món quà này không?', function(){
+                _.ajax_popup('act=customer&code=changegiftsvpbank&rand'+Math.random(),'POST',
+                    {idCartDetail:idCartDetail,idGift:idGift,idPrice:idPrice},
+                    function(j){
+                        $('#vnpay_overlay').hide();
+                        if(j.done==0){
+                            if(j.msg=='not_gift'){
+                                alert('Không tìm thấy quà.');
+                            }else if(j.msg=='not_price'){
+                                alert('Giá quà tặng không đúng.');
+                            }else if(j.msg=='not_quantity'){
+                                alert('Sản phẩm này số lượng đã hết.');
+                            }else if(j.msg=='price'){
+                                alert('Giá sản phẩm đổi lớn hơn sản phẩm bạn mua.');
+                            }else{
+                                alert(j.msg);
+                            }
+                        }else{
+                            alert('Chọn quà thành công. Hãy bắt đầu sử dụng.');
+                            _.redirect(j.url);
+                        }
+                    });
+           // },{title:{'background-color':'#FFFF','color':'#333','status':-2},content:{'background-color':'#FFF'}});
+
+        }else{
+
+            _.ajax_popup('act=index&code=getItem&rand'+Math.random(),'POST',
+                {idGift:idGift},
+                function(j){
+                    if(j.done==0){
+                        alert('Có lỗi xảy ra');
+
+                    }else{
+                    	var img ='<a  href="'+j.items.link+'">';
+						img +='<img style="background-image: url('+j.items.image_src[0]+')" src="style/images/blank.gif" width="205" height="205" class="">';
+						img +='</a>';
+						$('#boxvpImg').html(img);
+                        var html = '';
+
+
+                        html +='<div class="item-name f22">'+j.items.name+'</div>';
+                        html +='<div class="item-partner font_weight_bold f16">';
+                        html +=j.items.brand.title;
+                        html +='</div>';
+                        html +='<div class="c"></div>';
+                        html +='<input type="hidden" id="box_name_gift" value="'+j.items.name+'">';
+                       // html +='<div>'+j.items.article.description+'</div>';
+
+                        $('#boxvpBInfo').html(html);
+                        var dkap = "";
+						dkap += "<div id=\"div-term\" class=\"b-detail h130 over-hidden p-relative\">";
+						dkap += j.items.article.noteB2B;
+						dkap += "</div>";
+						dkap += "<div class=\"view-more\"><a href=\"javascript:void(0)\" onclick=\"viewmore('div-term',this)\">Xem thêm</a></div>";
+
+						$('#vpHLBotBuildContentDK').html(dkap);
+						$('#vpHLBotBuildBtn').html('<button class="v2_btn v2_btn-active" type="button" onclick="_.customer.confirm_gift('+idCartDetail+','+idGift+','+idPrice+',1);$(\'#boxDoiqua\').modal(\'hide\')">Nhận quà</button>');
+                        var cuahang = '';
+                        var getOffice = j.items.getOffice;
+						cuahang += "<div id=\"div-location1\" class=\"b-detail h130 over-hidden p-relative\">";
+                        for(x in getOffice){
+                            cuahang+= '<li class="mBottom5"><span style="font-family:\'FontAwesome\'"></span>&nbsp;'+getOffice[x].address+'</li>';
+						}
+						cuahang += "</div>";
+						cuahang += "<div class=\"view-more\"><a href=\"javascript:void(0)\" onclick=\"viewmore('div-location1',this)\">Xem thêm</a></div>";
+
+						$('#vpHLBotBuildContentVTCH').html(cuahang);
+
+                        $('#boxDoiqua').modal('show');
+                    }
+                });
+            }
+
+    },
+	receivingGiftsAgain:function (idCartDetail) {
+		$('#vnpay_overlay').show();
+		_.confirm('Bạn có chắc chắn muốn nhận lại quà tặng?', function(){
+			_.ajax_popup('act=customer&code=receivinggiftsagain&rand'+Math.random(),'POST',
+				{idCartDetail:idCartDetail},
+				function(j){
+					$('#vnpay_overlay').hide();
+					if(j.done==0){
+						if(j.msg=='not_gift'){
+							alert('Không tìm thấy quà.');
+						}else{
+							alert(j.msg);
+						}
+					}else{
+						alert('Bạn đã nhận lại quà thành công.');
+						_.redirect(j.url);
+					}
+				});
+		});
+	},
+    register : {
+        valid:function(){
+            var email = _.util_trim(jQuery('#reg_email').val());
+            if(email == ''){
+                _.error.set('#reg_email', t('Chưa nhập email'), 430, '.register_form');
+                return false;
+            }else if(!_.is_email(email)){
+                _.error.set('#reg_email', t('Email không hợp lệ'), 430, '.register_form');
+                return false;
+            }else{
+                _.error.close('#reg_email', '.register_form');
+            }
+
+			var reg_full_name = _.util_trim(jQuery('#reg_full_name').val());
+            if(reg_full_name == ''){
+                _.error.set('#reg_full_name', t('Chưa nhập tên'), 430, '.register_form');
+                return false;
+            }else{
+                _.error.close('#reg_full_name', '.register_form');
+            }
+
+
+            var reg_phone = _.util_trim(jQuery('#reg_phone').val());
+            if(reg_phone == ''){
+                _.error.set('#reg_phone', t('Chưa nhập số điện thoại'), 430, '.register_form');
+                return false;
+            }else if(!_.is_phone(reg_phone)){
+                _.error.set('#reg_phone', t('Số điện thoại không hợp lệ'), 430, '.register_form');
+                return false;
+            }else{
+                _.error.close('#reg_phone', '.register_form');
+            }
+
+            var pass = jQuery('#reg_pass').val();
+            if(pass.length < 6){
+                _.error.set('#reg_pass', t('Mật khẩu tối thiểu phải có 6 kí tự'), 430, '.register_form');
+                jQuery('#reg_pass').val('');
+                return false;
+            }
+            if(pass == ''){
+                _.error.set('#reg_pass', t('Chưa nhập mật khẩu hoặc có chỉ có ký tự trắng'), 430, '.register_form');
+                jQuery('#reg_pass').val('');
+                return false;
+            }
+            if(_.util_trim(pass) == ''){
+                _.error.set('#reg_pass', t('Không được bỏ trống trường mật khẩu hoặc dùng ký tự cách'), 430, '.register_form');
+                jQuery('#reg_pass').val('');
+                return false;
+            }
+            //pass = _.util_trim(pass);
+            _.error.close('#reg_pass', '.register_form');
+            var pass1 = jQuery('#reg_pass1').val();
+            if(pass1 == ''){
+                _.error.set('#reg_pass1', t('Chưa nhập lại mật khẩu'), 430, '.register_form');
+                return false;
+            }else if(pass != pass1){
+                _.error.set('#reg_pass1', t('Mật khẩu không khớp'), 430, '.register_form');
+                return false;
+            }else{
+                _.error.close('#reg_pass1', '.register_form');
+            }
+
+            return true;
+        },
+		showPassForm:function(email){
+			_.hide_overlay_popup('pop-register');
+			_.customer.password.resendPassword(email);
+		},
+        submit: function(){
+            if(_.customer.register.valid()){
+                var post = {
+                    email: _.util_trim(jQuery('#reg_email').val()),
+                    pass: _.util_trim(jQuery('#reg_pass').val()),
+                    uname: _.util_trim(jQuery('#reg_full_name').val()),
+                    birthday: _.util_trim(jQuery('#birthday').val()),
+                    phone: _.util_trim(jQuery('#myonoffswitch').val()),
+                    mobile: _.util_trim(jQuery('#reg_phone').val()),
+                    isPromotion: _.util_trim(jQuery('#isPromotion').val())
+                };
+
+                _.ajax_popup('act=customer&code=valid_reg','GET',{email: post.email},function(json){
+                    if(json.email){
+                        var msg = json.email;
+                        if(json.block >= 1){
+                            msg = t('Email này đã được sử dụng và đang bị khóa. Nếu có bất cứ thắc mắc nào, xin Quý khách vui lòng liên hệ với '+SITE_NAME+'.');
+                        }else if(json.active == 1){
+                            msg = t('Email này đã được sử dụng! Quý khách đã quên mật khẩu? Nhấn vào đây: ')+'<a href="javascript:void(0)" onclick="_.customer.register.showPassForm(\''+post.email+'\')">'+post.email+'</a>';
+                        }else if(json.active == 0){
+                            msg = t('Email này đã được dùng và đang trong trạng thái chưa kích hoạt. Nếu quý khách đã dùng email này mua hàng trên '+SITE_NAME+', vui lòng kiểm tra hòm thư hoặc nhấn vào link để nhận lại email kích hoạt: ')+'<a href="javascript:void(0)" onclick="_.customer.register.sendActiveEmail(\''+post.email+'\')">'+post.email+'</a>';
+                        }
+                        _.error.set('#reg_email', msg, 430, '.register_form');
+                    }else{
+                        _.ajax_popup('act=customer&code=registerv2','POST',post,
+                            function(json){
+                                if(json.err >= 0){
+                                    if(json.active){
+                                        alert(json.msg);
+                                        window.location.reload();
+                                    }else{
+                                        _.show_overlay_popup('alert-register', t('Kích hoạt tài khoản qua Email'),
+                                            _.popupSite('alert-register', t('Kích hoạt tài khoản qua Email'),_.join
+                                            ('<div class="modalClose">')
+                                            ('<a href="javascript:void(0)" onclick="_.hide_overlay_popup(\'alert-register\');" title="'+t('Close window')+'"></a>')
+                                            ('</div>')
+                                            ('<div class="modalContent" style="padding: 15px">')
+                                            ('<div class="modalTitle">')
+                                            ('<h2 style="margin: 0" id="">'+t('Kích hoạt tài khoản qua Email')+' </h2>')
+                                            ('</div>')
+                                            ('<div class="modalInfo register_form" style="height: auto;">')
+                                            ('<div id="registerUserPanel" class="infoLogin logonPanel gaTrack gaPanel">')
+                                            ('<div class="infoSubtitle">')
+                                            ('<p>'+t('Cám ơn Quý khách đã đăng kí tài khoản trên '+SITE_NAME+'.<br>Email kích hoạt đã được gửi vào hòm thư ')+'<b style="font-size:16px;color:red">'+json.email+'</b></p>')
+                                            ('<p>'+t('Vui lòng kiểm tra và <span style="color:red">bấm link kích hoạt</span>. Nếu Quý khách không thấy trong <b>Inbox</b> hãy kiểm tra <b>Thư rác/Spam/Junk mail</b>')+'</p>')
+                                            ('</div>')
+                                            ('</div>')
+                                            ('<div class="actions actionsControls">')
+                                            ('<button onclick="_.hide_overlay_popup(\'alert-register\')" class="button butBlack actionButton btnLoginV" value="Registrar" type="button" id="nextBt">')
+                                            ('<span>'+t('Đóng cửa sổ')+'</span>')
+                                            ('</button>')
+                                            ('</div>')
+                                            ('</div>')
+                                            ('</div>')
+                                            ()),
+                                            {
+                                                background: {
+                                                    'background-color' : 'transparent'
+                                                },
+                                                border: {
+                                                    'background-color' : 'transparent',
+                                                    'padding' : '0px'
+                                                },
+                                                title: {
+                                                    'display' : 'none'
+                                                },
+                                                content: {
+                                                    'padding' : '0px',
+                                                    'width' : '510px'
+                                                }
+                                            }
+                                        );
+                                    }
+                                }else{
+                                    if(_.is_exists(json.email)){
+                                        var msg = json.email;
+                                        if(json.block >= 1){
+                                            msg = t('Email này đã được sử dụng và đang bị khóa. Nếu có bất cứ thắc mắc nào, xin Quý khách vui lòng liên hệ với '+SITE_NAME+'.');
+                                        }else if(json.active == 1){
+                                            //msg = 'Email này đã được sử dụng! Quý khách đã <a href="javascript:void(0)" onclick="_.customer.register.showPassForm(\''+post.email+'\')">quên mật khẩu</a> ?';
+                                            msg = t('Email này đã được sử dụng! Quý khách đã quên mật khẩu? Nhấn vào đây: ')+'<a href="javascript:void(0)" onclick="_.customer.register.showPassForm(\''+post.email+'\')">'+post.email+'</a>';
+                                        }else if(json.active == 0){
+                                            //msg = 'Email này đã được dùng và đang trong trạng thái chưa kích hoạt. Nếu quý khách đã dùng email này mua hàng trên '+SITE_NAME+', vui lòng kiểm tra hòm thư hoặc <a href="javascript:void(0)" onclick="_.customer.register.sendActiveEmail(\''+post.email+'\')">nhấn vào đây</a> để nhận lại email kích hoạt';
+                                            msg = t('Email này đã được dùng và đang trong trạng thái chưa kích hoạt. Nếu quý khách đã dùng email này mua hàng trên '+SITE_NAME+', vui lòng kiểm tra hòm thư hoặc nhấn vào link để nhận lại email kích hoạt: ')+'<a href="javascript:void(0)" onclick="_.customer.register.sendActiveEmail(\''+post.email+'\')">'+post.email+'</a>';
+                                        }
+                                        _.error.set('#reg_email', msg, 430, '.register_form');
+                                    }
+                                }
+                            }
+                        );
+                    }
+                });
+            }
+        },
+    },
+    password:{
+        submit:function(){
+            var email = _.util_trim(jQuery('#forgot_email').val());
+            if(email == ''){
+                _.error.set('#forgot_email', t('Chưa nhập email'), 230, '.forgot_pasword');
+                return false;
+            }
+            else if(!_.is_email(email)){
+                _.error.set('#forgot_email', t('Email không hợp lệ'), 230, '.forgot_pasword');
+                return false;
+            }
+            else{
+                _.error.close('#forgot_email', '.forgot_pasword');
+            }
+            _.ajax_popup('act=customer&code=resend-pass',"GET",{email: email},
+                function (j) {
+                    if (j.err == 0 && j.msg == 'success') {
+                        _.hide_overlay_popup('pop-resend-password');
+                        alert(t("Thông tin hỗ trợ đã được gửi vào "+email+"\nQuý khách vui lòng làm theo hướng dẫn trong email"));
+                    }else{
+                        if(j.msg == 'no_active'){
+                            j.msg = t('Email chưa kích hoạt. Vui lòng kiểm tra hòm thư hoặc <a href="javascript:void(0)" onclick="_.customer.register.sendActiveEmail(\''+email+'\',0,function(){_.hide_overlay_popup(\'pop-resend-password\')})">nhấn vào đây</a> để nhận lại email kích hoạt');
+                        }
+                        _.error.set('#forgot_email', j.msg, 230, '.forgot_pasword');
+                    }
+                });
+            return true;
+        },
+        submitFormResendPassword: function(frm){
+            if(frm.pass.value == ''){
+                frm.pass.focus();
+                alert('Chưa nhập mật khẩu');
+                return false;
+            }else if(frm.pass.value.length < 6){
+                frm.pass.focus();
+                alert('Mật khẩu tối thiểu phải có 6 kí tự');
+                return false;
+            }else if(frm.pass1.value == ''){
+                frm.pass1.focus();
+                alert('Chưa nhập lại mật khẩu');
+                return false;
+            }else if(frm.pass1.value != frm.pass.value){
+                frm.pass1.focus();
+                alert('Nhập lại mật khẩu không chính xác');
+                return false;
+            }
+            frm.submit();
+            return true;
+        },
+        resendPassword:function(email){
+            _.show_overlay_popup('pop-resend-password', '',
+                _.customer.password.theme.resendPassword('pop-resend-password', email),
+                {
+                    background: {'background-color' : 'transparent'},
+                    border: {
+                        'background-color' : 'transparent',
+                        'padding' : '0px'
+                    },
+                    title: {'display' : 'none'},
+                    content: {
+                        'padding' : '0px',
+                        'width' : _.is_ie6() ? '325px' : '315px'
+                    },
+                    release:function(){
+                        _.enter('#forgot_email', _.customer.password.submit);
+                    }
+                });
+        },
+        theme:{
+            resendPassword:function(id, email){
+                return _.popupSite(id, 'Quên mật khẩu', _.join
+                    ('<div class="modalClose">')
+                    ('<a href="javascript:void(0)" onclick="_.hide_overlay_popup(\''+id+'\')" title="'+t('Close window')+'"></a>')
+                    ('</div>')
+                    ('<div class="content forgot_pasword modalContent" style="padding:15px 20px">')
+                    ('<div class="modalTitle"><h2 style="margin: 0;font-size: 20px">'+t('Gửi lại Mật khẩu')+'</h2></div>')
+                    ('<div id="cError"></div>')
+                    ('<div class="label mTop10 "><label style="color: #472900;font-size: 16px;margin: 15px 0" class="labelUp" for="email">'+t('Email đăng ký:')+'</label></div>')
+                    ('<div class="input-txt mTop10 reg_collapse" style="width:260px">')
+                    ('<input type="text" id="forgot_email" name="email" class="inputText logon gaFormField" style="width:250px" value="'+(email?email:'')+'" />')
+                    ('</div>')
+                    ('<div class="mTop10 f11" style="line-height: 1.5;">'+t('Vui lòng nhập đúng email đã đăng kí để nhận thông tin hỗ trợ lấy lại mật khẩu từ '+SITE_NAME )+'</div>')
+                    ('<div class="mTop10">')
+                    ('<div class="actions" style="margin:0 auto">')
+                    ('<a class="button butBlack actionButton btnLoginV" onclick="_.customer.password.submit()" href="javascript:void(0)"><span>'+t('Gửi')+'</span></a>')
+                    ('<div class="c"></div>')
+                    ('</div>')
+                    ('</div>')
+                    ('</div>')()
+                );
+            }
+        }
+    },
+}
+_.ready.add(function () {
+	$(document).ready(function () {
+		$('#popup_confirm button').live('click', function () {
+			$('#vnpay_overlay').hide();
+		});
+		$('#popup_confirm .popup-close-button').live('click', function () {
+			$('#vnpay_overlay').hide();
+		});
+	});
+});
+function showhideInfo(id,obj) {
+    $('.optiontite').removeClass('active');
+    $('.buildL.content').hide();
+    $(obj).addClass('active');
+    $('#'+id).slideToggle();
+}
+function changeCard(obj) {
+	var id = $(obj).attr('data-id');
+	var image = $(obj).attr('data-image');
+
+	$('#thanhkyouCrad').val(id);
+	$('#jsCardshow').css('backgroundImage','url("'+image+'")');
+
+}
+/**
+ * Forward port jQuery.live()
+ * Wrapper for newer jQuery.on()
+ * Uses optimized selector context
+ * Only add if live() not already existing.
+ */
+if (typeof jQuery.fn.live == 'undefined' || !(jQuery.isFunction(jQuery.fn.live))) {
+    jQuery.fn.extend({
+        live: function (event, callback) {
+            if (this.selector) {
+                jQuery(document).on(event, this.selector, callback);
+            }
+        }
+    });
+}
+jQuery('.small-img').click(function () {
+	jQuery('.small-img').removeClass('active');
+	jQuery(this).addClass('active');
+	var img = jQuery(this).attr('data');
+	jQuery('.main-img >img').css("background-image", 'url(' + img + ')');
+});
+jQuery.browser = {};
+(function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();
+if(URL_PARAMS.page!='pages'&&$(".select").length>0){
+    $(".select").chosen();
+}
+
+function addLink() {
+    var body_element=document.getElementsByTagName('body')[0];
+    var selection;
+    selection = window.getSelection();
+
+	if(selection==codeCopy){
+		var copytext = '*100*'+selection+'#';
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        body_element.appendChild(newdiv);
+        newdiv.innerHTML = copytext;
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function() {
+            body_element.removeChild(newdiv);
+        }, 0);
+	}
+}
+
+/*
+var swiper = new Swiper('.swiper-container', {
+    width:264,
+    height:290,
+    spaceBetween:16,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    speed: 600,
+    autoplay: true,
+    paginationClickable: true
+});*/
+function heightRebuild (id,obj){
+    if($(obj).hasClass('dong')){
+        $('#'+id).addClass('jsContentHeight');
+        $(obj).removeClass('dong');
+    }else{
+        $('#'+id).removeClass('jsContentHeight');
+        $(obj).addClass('dong');
+    }
+}
+
+function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+    alert('Đã sao chép thành công');
+}
+function viewmore(el,link) {
+	$("#"+el).removeClass('over-hidden').removeClass('h130').removeClass('h80');
+	link.parentElement.style.display = 'none';
+}

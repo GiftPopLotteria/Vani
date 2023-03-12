@@ -1,0 +1,61 @@
+.float_left,.fl,.fL,#fl {float:left}
+
+.float_right,.fr,.fR,#fr {float:right}
+
+.clear_both,.clb,.clear {clear:both}
+.c {clear:both; height:0; overflow:hidden}
+
+.cur_pointer{cursor:pointer}
+
+.hidden{display:none}
+
+.noBoder,#noBoder{border:none}
+.noBg{background:none}
+a.no_under:hover{text-decoration:none}
+
+/* margin */
+.m0,#m0{margin:0}
+.mT0,#mT0{margin-top:0px}
+.mT5,#mT5{margin-top:5px}
+.mT10,#mT10{margin-top:10px}
+.mT15,#mT15{margin-top:15px}
+.mT20,#mT20{margin-top:20px}
+.mT25,#mT25{margin-top:25px}
+.mT35,#mT35{margin-top:30px}
+.mT40,#mT40{margin-top:40px}
+.mT45,#mT45{margin-top:45px}
+
+.mB40{margin-bottom:40px}
+.mB25,#mB25{margin-bottom:25px}
+.mB20,#mB20{margin-bottom:20px}
+.mB15,#mB15{margin-bottom:15px}
+.mB10,#mB10{margin-bottom:10px}
+.mB5,#mB5{margin-bottom:5px}
+.mB0,#mB0{margin-bottom:0px}
+
+.mL5,#mL5{margin-left:5px}
+.mL10,#mL10{margin-left:10px}
+.mL15,#mL15{margin-left:15px}
+.mL20,#mL20{margin-left:20px}
+.mL25,#mL25{margin-left:25px}
+.mL30,#mL30{margin-left:30px}
+
+.mR5,#mR5{margin-right:5px}
+.mR10,#mR10{margin-right:10px}
+.mR15,#mR15{margin-right:15px}
+.mR20,#mR20{margin-right:20px}
+.mR40,#mR40{margin-right:40px}
+
+/*Font */
+.f12,#f12{font-size: 12px;}
+.f14,#f14{font-size: 14px;}
+.f16,#f16{font-size: 16px}
+
+.color333,#color333{color: #333}
+.color000,#color000{color: #000}
+.colorFFF,#colorFFF{color: #FFF}
+.color777,#color777{color: #777}
+
+.classic-popup-title{background-color: #584879 !important;}
+
+

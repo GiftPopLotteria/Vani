@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>Kh&#244;ng t&#236;m thấy trang</title>
+
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+
+    <!-- ace styles -->
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="~/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <![endif]-->
+    <link href="/assets/appcss?v=_S8l1J2IX0K_EWDMOwiVH6V4mjvTWdNC4jtFEAvjafs1" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    
+
+    <script src="/assets/js/ace-extra.min.js"></script>
+    <link href="/Content/BlankLayoutCss.css?ver=0.1" rel="stylesheet" />
+
+</head>
+<body>
+    <header id="header-ace">
+        <div class="" style="text-align: center;">
+            <div>
+                <h1 class="sitename">
+                    BỘ CÔNG THƯƠNG
+                </h1>
+                <h2 class="sitesoft namesoft">
+                    HỆ THỐNG QUẢN LÝ, GIÁM SÁT VÀ BẢO VỆ NGƯỜI TIÊU DÙNG TRONG THƯƠNG MẠI ĐIỆN TỬ
+                </h2>
+            </div>
+        </div>
+    </header>
+    <style>
+        .navbar .navbar-nav > li {
+            border: none;
+        }        
+    </style>
+    <div class="main-container ace-save-state" id="main-container">
+        <script type="text/javascript">
+            try { ace.settings.loadState('main-container') } catch (e) { }
+        </script>
+
+        
+
+        <div class="main-content">
+            <div class="main-content-inner">
+
+                <div class="page-content">
+
+                    
+
+
+    <style>
+        font-face {
+            font-family: 'Roboto-Bold';
+            src: url('../../Content/EndUser/fonts/Roboto-Bold.ttf') format('truetype');
+        }
+
+        .main-container:before {
+            background: unset;
+        }
+
+        .alert-content {
+            width: 60%;
+            margin: 100px auto;
+            background: #fff !important;
+            padding: 30px 0;
+            height: 50vh;
+            border: 5px solid #009ae0;
+            box-shadow: -23px 20px 0px 0px #227ca7;
+        }
+
+        .sitetitle {
+            text-align: center;
+        }
+
+            .sitetitle h1, .content-err h1 {
+                text-transform: uppercase;
+                color: #e00000 !important;
+                font-size: 28px;
+                font-weight: bold;
+                font-family: Roboto-Bold;
+            }
+
+            .sitetitle h2, .contentbox-err h3 {
+                color: #428bca;
+                line-height: 1.6;
+                font-size: 20px;
+                font-family: Roboto-Bold;
+                font-weight: bold;
+            }
+
+        .comeback {
+            float: left;
+            width: 100%;
+            text-align: left;
+            margin-top: 30px;
+        }
+
+            .comeback a {
+                border-radius: 20px;
+            }
+
+        .contentbox-err h3 {
+            padding-right: 80px;
+        }
+
+        .contentbox-err {
+            height: 100%;
+            padding-left: 30px;
+        }
+    </style>
+
+<div class="alert-content">
+    <div class="col-sm-5 sitetitle">
+        <div class="qhieu">
+            <img src="/Content/EndUser/img/error.png" height="180px" style="" alt="">
+        </div>
+        <div class="box-sitename">
+        </div>
+    </div>
+    <div class="row col-sm-7 contentbox-err">
+        <!-- PAGE CONTENT BEGINS -->
+
+        <div class="error1">
+            <div class="content-err">
+                <h1 class="grey lighter smaller">
+                    Có lỗi xảy ra!
+                </h1>
+                <h3 class="lighter smaller">Rất tiếc hệ thống không tìm thấy trang web!</h3>
+
+            </div>
+        </div>
+
+        <div class=" comeback">
+            <a href="/" class="btn btn-primary">
+                Trở về trang chủ
+            </a>
+        </div>
+        <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.row -->
+</div><!-- /.row -->
+
+
+                </div><!-- /.page-content -->
+            </div>
+        </div><!-- /.main-content -->
+        
+    </div><!-- /.main-container -->
+    <script src="/assets/appjs?v=wgJGoAeJZn2Q8xgBRXootaW9g4u5SW_FiLJh9D4E8kE1"></script>
+
+    
+    <![endif]-->
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    
+</body>
+</html>

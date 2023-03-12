@@ -1,0 +1,65 @@
+_.lang = {
+    trans:{},
+    active:'vi',
+    default:'vi',
+    init:function(def, active, arr){
+        _.lang.trans = arr ? arr : [];
+        _.lang.def = def ? def : 'vi';
+        _.lang.active = active ? active : 'vi';
+    },
+    t:function(arrInput){
+        var na = arrInput.length;
+        if (na == 0) return '';
+        var txt = arrInput[0];
+        var localTxt = '';
+        if(txt != ''){
+            localTxt = (_.lang.default == _.lang.active) ? txt : _.lang.checkWords(txt, _.lang.active, true);
+        }
+        if (localTxt == '') {
+            return '[ERROR TRANS: '+txt+']';
+        } else {
+            var i = 0;
+            var r = '', INVISIBLE_STR = '#~@_@~#';
+            for (i = 1; i < na; i++) {
+                r = new String(arrInput[i]);
+                r = r.replace(/%/g, INVISIBLE_STR);
+                localTxt = localTxt.replace('%'.concat(i), r);
+            }
+            localTxt = localTxt.replace(/#~@_@~#/g, '%');
+            return localTxt;
+        }
+    },
+    checkWords:function(txt, lang, insert){
+        var str_insert = txt;
+        txt = _.string.stripUnicode(txt);
+        txt = txt.toLowerCase(txt);
+
+        if(_.lang.trans[txt]){
+            return _.lang.trans[txt][lang];
+        }else if(insert){
+            //goi request add to DB
+            _.lang.addWords(str_insert);
+        }
+        return '';
+    },
+    addWords:function(txt, cb){
+        _.ajax_popup('act=lang&code=add-lang-auto','POST',{txt:txt},
+            function(j){
+                if(cb){
+                    cb(j);
+                }
+            });
+    },
+    change:function(lang){
+        _.ajax_popup('act=lang&code=change-lang','POST',{id:lang},
+            function(j){
+                if(j.err == 0){
+                    _.reload();
+                }else{
+                    alert(j.msg);
+                }
+            });
+    }
+};
+
+function t(){var arrIn = arguments; return _.lang.t(arrIn)};
