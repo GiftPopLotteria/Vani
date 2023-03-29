@@ -1,0 +1,118 @@
+@charset "utf-8";
+/*
+The MIT License
+
+Copyright (c) 2017, Seung Hoon Lee <juanlee0@naver.com>. All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+/* 1st method: block 기준: 중앙 정렬이 쉽지 않다. */
+/*.modal_canvas {
+    display: block;
+    position:fixed;
+    top:0;left:0;
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+}
+.modal_frame {
+    position:relative;
+    top:25%;
+    margin: 0 auto;
+    width:50%; 
+    max-width:500px;
+}
+*/
+/* 2nd method: inline-block */
+.modal_canvas {
+	z-index:9999;
+    display: block;
+    position:fixed;
+    top:0;left:0;
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    /*=====*/
+    text-align: center;
+    line-height: 100vh; /* device  또는 browser window 높이에 맞춤. */
+    
+}
+.modal_canvas * {
+    line-height: normal;
+}
+.modal_frame {
+    /*position:relative;
+    top:25%;*/
+    margin: 0 auto;
+    width:50%; 
+    max-width:1200px;
+    min-width:360px; /* 모바일 디바이스의 최소라고 가정하고 지정. */    
+    /*====*/
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.modal_frame .modal_header {
+    width:100%;
+    height: 2em;
+    line-height: 2em;
+    background-color: black;
+}
+.modal_frame .modal_footer {
+    width:100%;
+    height: 1.5em;
+    line-height: 1.5em;
+}
+.modal_frame .modal_header * , .modal_frame .modal_footer * {
+    vertical-align: middle;
+}    
+.modal_frame .button {
+    padding:0.1em;
+    
+}
+/*
+    Content Body Area
+*/
+.modal_frame .modal_content {
+    /* height:800px;  고정값을 사용안 할 것임. */
+    width:100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* content box 에 들어갈 자식 이미지 (1개라고 가정하고 진행) */
+.modal_frame .modal_content > img {
+    display: block; 
+    width:100%;
+    
+}
+
+.modal_frame .modal_header .title {
+    float: left; left: .5em;
+    color:white;
+}
+.modal_frame .modal_header .button.close {
+    float: right; right: .5em;
+    color:white;
+    /*
+	background-color: dimgrey;
+	*/
+    padding:.1em .5em;
+}

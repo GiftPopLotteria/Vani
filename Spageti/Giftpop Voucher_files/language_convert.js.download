@@ -1,0 +1,53 @@
+class Language {
+    constructor(lang) {
+        var __construct = function (){
+            if (eval('typeof ' + lang) == 'undefined'){
+                lang = "en";
+            }
+            return;
+        };
+        this.getStr = function (str){            
+            var retStr = eval('eval(lang)["'+ str +'"]');
+            if (typeof retStr != 'undefined'){
+                return retStr;
+            } else {
+                return str;
+            }
+        };
+    }
+}
+var en = {};
+var vn = {
+  "Please choose method" : "Vui lòng chọn phương thức",
+  "Please select carrier" : "Vui lòng chọn nhà mạng",
+  "Please input phone number" : "Vui lòng nhập số điện thoại",
+  
+  "Please input Company name/ Individual name" : "Vui lòng nhập Tên công ty/ cá nhân",
+  "Please input Taxcode/ ID card number" : "Vui lòng nhập Số ĐKKD/ CCCD",
+  "Please input Detailed address" : "Vui lòng nhập Số nhà, tên đường",
+  "Please input Phone number" : "Vui lòng nhập Điện thoại",
+  "Please input email address" : "Vui lòng nhập địa chỉ email",
+  "Please select City-Province" : "Vui lòng chọn Tỉnh thành",
+  "Please select district" : "Vui lòng chọn Quận huyện",
+  "Please select ward" : "Vui lòng chọn Phường xã",  
+  "Please input The Insured name": "Vui lòng nhập Họ tên người được bảo hiểm",
+  "Please input ID card number" : "Vui lòng nhập Số CMND/CCCD",
+  "Please input Relationship with insurance buyer" : "Vui lòng nhập Mối quan hệ với người mua bảo hiểm",
+};
+var kr = {
+  "Please choose method" : "방법을 선택해 주세요",
+  "Please select carrier" : "이동통신사를 선택하세요",
+  "Please input phone number" : "전화번호를 입력하세요",
+  
+  "Please input Company name/ Individual name" : "회사명/개인명을 입력해주세요.",
+  "Please input Taxcode/ ID card number" : "세금코드/ID 카드 번호를 입력하세요.",
+  "Please input Detailed address" : "상세주소를 입력해주세요",
+  "Please input Phone number" : "전화번호를 입력하세요",
+  "Please input email address" : "이메일 주소를 입력하세요",
+  "Please select City-Province" : "시-도를 선택하세요.",
+  "Please select district" : "지역을 선택하세요",
+  "Please select ward" : "병동을 선택하세요",  
+  "Please input The Insured name": "피보험자 이름을 입력하십시오",
+  "Please input ID card number" : "주민등록번호를 입력해주세요",
+  "Please input Relationship with insurance buyer" : "보험 구매자와의 관계를 입력하십시오",
+};
